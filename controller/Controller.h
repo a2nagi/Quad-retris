@@ -1,8 +1,4 @@
-//
-// Created by Harkamal on 2017-11-24.
-//
+#ifndef CONTROLLER_H
+#define CONTROLLER_H
 
-#ifndef CS246_PROJECT_CONTROLLER_H
-#define CS246_PROJECT_CONTROLLER_H
-
-#endif //CS246_PROJECT_CONTROLLER_H
+#endif

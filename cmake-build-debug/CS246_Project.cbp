@@ -82,7 +82,22 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/Harkamal/SE/3B/CS246/CS246_Project/controller/Block.h">
+			<Option target="CS246_Project"/>
+		</Unit>
+		<Unit filename="C:/Users/Harkamal/SE/3B/CS246/CS246_Project/controller/Controller.h">
+			<Option target="CS246_Project"/>
+		</Unit>
+		<Unit filename="C:/Users/Harkamal/SE/3B/CS246/CS246_Project/controller/Level.h">
+			<Option target="CS246_Project"/>
+		</Unit>
 		<Unit filename="C:/Users/Harkamal/SE/3B/CS246/CS246_Project/main.cpp">
+			<Option target="CS246_Project"/>
+		</Unit>
+		<Unit filename="C:/Users/Harkamal/SE/3B/CS246/CS246_Project/model/Cell.h">
+			<Option target="CS246_Project"/>
+		</Unit>
+		<Unit filename="C:/Users/Harkamal/SE/3B/CS246/CS246_Project/view/TextDisplay.h">
 			<Option target="CS246_Project"/>
 		</Unit>
 		<Unit filename="C:/Users/Harkamal/SE/3B/CS246/CS246_Project/CMakeLists.txt">
