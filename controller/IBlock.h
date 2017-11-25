@@ -8,4 +8,4 @@ public:
     virtual void move();
     virtual void rotate();
 };
-#endif //CS246_PROJECT_IBLOCK_H_H
+#endif //IBLOCK_H
