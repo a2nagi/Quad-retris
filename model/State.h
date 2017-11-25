@@ -15,12 +15,11 @@
              I am an in between piece, and am changing my colour now.
 */
 enum class StateType { NewPiece, Relay, Reply };
-enum class Colour { None, Black, White };
-enum class Direction { NW, N, NE, W, E, SW, S, SE };
+enum class Direction { left, right, up, down };
 
 struct State {
   StateType type;  // See above
-  Colour colour;   // What colour was the new piece?  (NOT what is my colour)
+  char filledPiece; // which kind of piece is filled in the cell
   Direction direction;  // In which direction from me is the new piece?
 };
 

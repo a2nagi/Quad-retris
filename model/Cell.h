@@ -12,10 +12,9 @@ class Cell : public Subject, public Observer {
 public:
     Cell(size_t r, size_t c);
 
-    void setPiece(Colour colour);    // Place a piece of given colour here.
-    void toggle();         // Toggles my colour.
+    void setPiece(char blockType);    // Place a piece of given colour here.
 
-    void notify(Subject<Info, State> &whoFrom) override;// My neighbours will call this
+    void notify(Subject &whoFrom) override;// My neighbours will call this
     // when they've changed state
     Info getInfo() const override;
 };

@@ -1,8 +1,10 @@
 #ifndef SUBJECT_H
 #define SUBJECT_H
 #include <vector>
+#include "State.h"
 
 class Observer;
+struct Info;
 
 class Subject {
   std::vector<Observer> observers;
@@ -10,25 +12,21 @@ class Subject {
  protected:
   void setState(StateType newS);
  public:
-  void attach(Observer<InfoType, StateType> *o);  
+  void attach(Observer *o);
   void notifyObservers();
-  virtual InfoType getInfo() const = 0;
+  virtual Info getInfo() const = 0;
   StateType getState() const;
 };
 
-template <typename InfoType, typename StateType>
-void Subject<InfoType, StateType>::attach(Observer<InfoType, StateType> *o) {
+void Subject::attach(Observer *o) {
   observers.emplace_back(o);
 }
 
-template <typename InfoType, typename StateType>
-void Subject<InfoType, StateType>::notifyObservers() {
+void Subject::notifyObservers() {
   for (auto &ob : observers) ob->notify(*this);
 }
 
-template <typename InfoType, typename StateType>
-void Subject<InfoType, StateType>::setState(StateType newS) { state = newS; }
+void Subject::setState(StateType newS) { state = newS; }
 
-template <typename InfoType, typename StateType>
-StateType Subject<InfoType, StateType>::getState() const { return state; }
+StateType Subject::getState() const { return state; }
 #endif
