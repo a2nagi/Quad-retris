@@ -3,5 +3,5 @@ project(CS246_Project)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES main.cpp model/Cell.h view/TextDisplay.h controller/Controller.h controller/Level.h controller/Block.h)
+set(SOURCE_FILES main.cpp model/Cell.h view/TextDisplay.h controller/Controller.h controller/Level.h controller/Block.h controller/IBlock.h)
 add_executable(CS246_Project ${SOURCE_FILES})
