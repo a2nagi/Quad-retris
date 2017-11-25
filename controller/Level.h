@@ -8,6 +8,6 @@ private:
     int level;
 public:
     virtual Block getNextBlock(char nextBlock = '') = 0;
-    virtual Level getNextLevel() = 0;
+    virtual void getNextLevel() = 0;
 };
 #endif
