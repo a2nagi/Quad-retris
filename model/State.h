@@ -16,7 +16,7 @@
 */
 enum class StateType { NewPiece, Relay, Reply };
 enum class Direction { left, right, up, down };
-enum class Rotate {clockWise, counterClockWise};
+enum class Rotate {clockWise, counterClockWise };
 struct State {
   StateType type;  // See above
   char filledPiece; // which kind of piece is filled in the cell
