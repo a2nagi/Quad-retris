@@ -7,6 +7,6 @@ public:
     IBlock();
     void move(Direction d);
     void rotate(Rotate r);
-    void getColor();
+    Color getColor();
 };
 #endif //IBLOCK_H
