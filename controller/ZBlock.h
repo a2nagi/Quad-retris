@@ -4,8 +4,9 @@
 class ZBlock : public Block {
 public:
     ZBlock();
-    virtual void move();
-    virtual void rotate();
+    void move(Direction d);
+    void rotate(Rotate r);
+    Color getColor();
 };
 
 #endif //ZBLOCK_H

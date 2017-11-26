@@ -4,7 +4,8 @@
 class TBlock : public Block {
 public:
     TBlock();
-    virtual void move();
-    virtual void rotate();
+    void move(Direction d);
+    void rotate(Rotate r);
+    Color getColor();
 };
 #endif //TBLOCK_H

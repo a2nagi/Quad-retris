@@ -4,7 +4,8 @@
 class LBlock : public Block {
 public:
     LBlock();
-    virtual void move();
-    virtual void rotate();
+    void move(Direction d);
+    void rotate(Rotate r);
+    Color getColor();
 };
 #endif //LBLOCK_H

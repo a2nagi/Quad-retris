@@ -4,7 +4,8 @@
 class JBlock : public Block {
 public:
     JBlock();
-    virtual void move();
-    virtual void rotate();
+    void move(Direction d);
+    void rotate(Rotate r);
+    Color getColor();
 };
 #endif //JBLOCK_H

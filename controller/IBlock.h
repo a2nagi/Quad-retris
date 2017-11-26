@@ -5,7 +5,8 @@
 class IBlock : public Block {
 public:
     IBlock();
-    virtual void move();
-    virtual void rotate();
+    void move(Direction d);
+    void rotate(Rotate r);
+    void getColor();
 };
 #endif //IBLOCK_H

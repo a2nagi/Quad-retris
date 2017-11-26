@@ -4,7 +4,8 @@
 class SBlock : public Block {
 public:
     SBlock();
-    virtual void move();
-    virtual void rotate();
+    void move(Direction d);
+    void rotate(Rotate r);
+    Color getColor();
 };
 #endif //SBLOCK_H
