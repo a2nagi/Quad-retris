@@ -6,7 +6,7 @@ char Block ::getColor()
     return c1->getInfo().blockType; // check again if you can just change return type of getColor to char from enum Color
 }
 
-Block::Block(Block &other)
+Block::Block(const Block &other)
 {
     this->c1=new Cell(other.c1->getInfo().row,other.c1->getInfo().col);
     this->c2=new Cell(other.c2->getInfo().row,other.c2->getInfo().col);
