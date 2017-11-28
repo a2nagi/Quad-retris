@@ -6,6 +6,15 @@ char Block ::getColor()
     return c1->getInfo().blockType; // check again if you can just change return type of getColor to char from enum Color
 }
 
+Block::Block(Block &other)
+{
+    this->c1=new Cell(other.c1->getInfo().row,other.c1->getInfo().col);
+    this->c2=new Cell(other.c2->getInfo().row,other.c2->getInfo().col);
+    this->c3=new Cell(other.c3->getInfo().row,other.c3->getInfo().col);
+    this->c4=new Cell(other.c4->getInfo().row,other.c4->getInfo().col);
+
+}
+
 void Block::move(Direction d){
 
     Info leftMost=c1->getInfo();
