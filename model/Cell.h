@@ -8,7 +8,6 @@
 class Cell : public Subject, public Observer {
     const size_t r, c;
     char blockType;
-
 public:
     Cell(size_t r, size_t c);
 
@@ -17,6 +16,7 @@ public:
     void notify(Subject &whoFrom) override;// My neighbours will call this
     // when they've changed state
     Info getInfo() const override;
+    bool setInfo(Info &i);
 };
 
 #endif //CELL_H
