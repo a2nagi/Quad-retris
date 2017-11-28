@@ -11,6 +11,7 @@ protected:
 public:
     Block(char whichBlock);
     Block(const Block& other);
+    Block& operator=(const Block &b);
     virtual void move(Direction d);
     virtual void rotate(Rotate r);
     std::vector<Cell *> getCells() {
