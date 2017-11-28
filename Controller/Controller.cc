@@ -6,7 +6,7 @@ Controller::parseCommand(){
 
 	string s;
 	bool match;
-	int multiple=0;
+	//int multiple=0; multiple should be set to 1 , else none of the functions will be called in if-else block, done inside while loop
 	int curLevel=0;
 	
 	//References to Block and Level.
@@ -32,9 +32,13 @@ Controller::parseCommand(){
 
 	while(cin>>s){
 	
-	if(isdigit(s[0])){
-		multiple=stoi(s[0]);
-	}
+// 	if(isdigit(s[0])){
+// 		multiple=stoi(s[0]);
+// 	}
+		
+		int multiple=1;
+		istringstream ss{s};
+		ss>>multiple;
 		
 		if(regex_match(s,left)){
 
@@ -56,13 +60,15 @@ Controller::parseCommand(){
 		}
 
 		else if(regex_match(s,clockwise)){
-			for(int i=0;i<multiple;i++){
+			int reqdRotations=multiple%4;
+			for(int i=0;i<reqdRotations;i++){
 				curr->rotate(Rotate::clockWise);
 			}			
 		}
 
 		else if(regex_match(s,counterclockwise)){
-			for(int i=0;i<multiple;i++){
+			int reqdRotations=multiple%4;
+			for(int i=0;i<reqdRotations;i++){
 				curr->rotate(Rotate::counterClockWise);
 			}			
 		}
