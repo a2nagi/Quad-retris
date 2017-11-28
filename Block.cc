@@ -15,6 +15,202 @@ Block::Block(const Block &other)
 
 }
 
+Block::Block(char whichBlock)
+{
+    if(whichBlock=='I')
+    {
+        Info i1;
+        i1.row=0;
+        i1.col=0;
+        i1.blockType='I';
+        c1->setInfo(i1);
+
+        Info i2;
+        i2.row=0;
+        i2.col=1;
+        i2.blockType='I';
+        c2->setInfo(i2);
+
+        Info i3;
+        i3.row=0;
+        i3.col=2;
+        i3.blockType='I';
+        c3->setInfo(i3);
+
+        Info i4;
+        i4.row=0;
+        i4.col=3;
+        i4.blockType='I';
+        c4->setInfo(i4);
+    }
+
+    else if(whichBlock=='O')
+    {
+        Info o1;
+        o1.row=0;
+        o1.col=0;
+        o1.blockType='O';
+        c1->setInfo(o1);
+
+        Info o2;
+        o2.row=0;
+        o2.col=1;
+        o2.blockType='O';
+        c2->setInfo(o2);
+
+        Info o3;
+        o3.row=1;
+        o3.col=0;
+        o3.blockType='O';
+        c3->setInfo(o3);
+
+        Info o4;
+        o4.row=1;
+        o4.col=1;
+        o4.blockType='O';
+        c4->setInfo(o4);
+    }
+
+    else if (whichBlock=='T')
+    {
+        Info t1;
+        t1.row=0;
+        t1.col=1;
+        t1.blockType='T';
+        c1->setInfo(t1);
+
+        Info t2;
+        t2.row=1;
+        t2.col=0;
+        t2.blockType='T';
+        c2->setInfo(t2);
+
+        Info t3;
+        t3.row=1;
+        t3.col=1;
+        t3.blockType='T';
+        c3->setInfo(t3);
+
+        Info t4;
+        t4.row=1;
+        t4.col=2;
+        t4.blockType='T';
+        c4->setInfo(t4);
+    }
+
+    else if(whichBlock=='S')
+    {
+        Info s1;
+        s1.row=0;
+        s1.col=0;
+        s1.blockType='S';
+        c1->setInfo(s1);
+
+        Info s2;
+        s2.row=0;
+        s2.col=1;
+        s2.blockType='S';
+        c2->setInfo(s2);
+
+        Info s3;
+        s3.row=1;
+        s3.col=1;
+        s3.blockType='S';
+        c3->setInfo(s3);
+
+        Info s4;
+        s4.row=1;
+        s4.col=2;
+        s4.blockType='S';
+        c4->setInfo(s4);
+    }
+
+    else if(whichBlock=='Z')
+    {
+
+        Info z1;
+        z1.row=0;
+        z1.col=1;
+        z1.blockType='Z';
+        c1->setInfo(z1);
+
+        Info z2;
+        z2.row=0;
+        z2.col=2;
+        z2.blockType='Z';
+        c2->setInfo(z2);
+
+        Info z3;
+        z3.row=1;
+        z3.col=0;
+        z3.blockType='Z';
+        c3->setInfo(z3);
+
+        Info z4;
+        z4.row=1;
+        z4.col=1;
+        z4.blockType='Z';
+        c4->setInfo(z4);
+    }
+
+    else if(whichBlock=='L')
+    {
+        Info l1;
+        l1.row=0;
+        l1.col=0;
+        l1.blockType='L';
+        c1->setInfo(l1);
+
+        Info l2;
+        l2.row=0;
+        l2.col=1;
+        l2.blockType='L';
+        c2->setInfo(l2);
+
+        Info l3;
+        l3.row=0;
+        l3.col=2;
+        l3.blockType='L';
+        c3->setInfo(l3);
+
+        Info l4;
+        l4.row=1;
+        l4.col=2;
+        l4.blockType='L';
+        c4->setInfo(l4);
+    }
+
+    else if(whichBlock=='J')
+    {
+        Info j1;
+        j1.row=0;
+        j1.col=0;
+        j1.blockType='J';
+        c1->setInfo(j1);
+
+        Info j2;
+        j2.row=0;
+        j2.col=1;
+        j2.blockType='J';
+        c2->setInfo(j2);
+
+        Info i3;
+        i3.row=0;
+        i3.col=2;
+        i3.blockType='J';
+        c3->setInfo(i3);
+
+        Info j4;
+        j4.row=1;
+        j4.col=0;
+        j4.blockType='J';
+        c4->setInfo(j4);
+    }
+}
+
+
+
+
 void Block::move(Direction d){
 
     Info leftMost=c1->getInfo();
