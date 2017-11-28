@@ -15,7 +15,7 @@ Block::Block(const Block &other)
 
 }
 
-Block& Block::operator=(Block &other)
+Block& Block::operator=(const Block &other)
 {
     if(this==&other)
     {
