@@ -9,6 +9,7 @@ class Block {
 protected:
     Cell *c1, *c2, *c3, *c4;
 public:
+    Block(const Block& other);
     virtual void move(Direction d) = 0;
     virtual void rotate(Rotate r) = 0;
     std::vector<Cell *> getCells() {
