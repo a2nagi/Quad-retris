@@ -21,10 +21,6 @@ public:
 	void notify(subject &whoNotified) override;
 	friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
 };
-<<<<<<< HEAD
-//TextDisplay
-=======
 
->>>>>>> 38181108d106df1d8bd4e008a9bc23b601962b91
 
 #endif //CS246_PROJECT_TEXTDISPLAY_H
