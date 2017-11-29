@@ -5,30 +5,30 @@ using namespace std;
 
 Block* getNextBlock(char nextBlock = ''){
 	if(nextBlock=='I'){
-		Block *b= New IBlock();
+		Block *b= new IBlock();
 	}
 
 	else if(nextBlock=='S'){
-		Block *b= New SBlock();
+		Block *b= new SBlock();
 	}
 
 	else if(nextBlock=='O'){
-		Block *b= New OBlock();
+		Block *b= new OBlock();
 	}
 
 	else if(nextBlock=='T'){
-		Block *b= New TBlock();
+		Block *b= new TBlock();
 	}
 
 	else if(nextBlock=='Z'){
-		Block *b= New ZBlock();
+		Block *b= new ZBlock();
 	}
 
 	else if(nextBlock=='J'){
-		Block *b= New JBlock();
+		Block *b= new JBlock();
 	}
 	else if(nextBlock=='L'){
-		Block *b= New LBlock();
+		Block *b= new LBlock();
 	}
 
 	return b;
