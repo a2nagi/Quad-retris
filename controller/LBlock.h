@@ -4,8 +4,9 @@
 class LBlock : public Block {
 public:
     LBlock();
-    void move(Direction d);
-    void rotate(Rotate r);
-    Color getColor();
+    Color getColor()override;
+    void setRotationHeight(int height)override;
+    void setRotationWidth(int width)override;
+    ~LBlock();
 };
 #endif //LBLOCK_H
