@@ -52,9 +52,3 @@ void SBlock::setRotationWidth(int width) {
     }
 }
 
-SBlock::~SBlock() {
-    delete c1;
-    delete c2;
-    delete c3;
-    delete c4;
-}
