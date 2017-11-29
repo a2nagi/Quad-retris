@@ -1,12 +1,11 @@
 #include "Level3.h"
 
 using namespace std;
+Block* Level3::getNextBlock(){
 
-Block* Level3::getNextBlock(char nextBlock = ''){
-	
-	Block *b;
 	int x = rand()%9;
-	
+	Block *b;
+
 	if(x==1){
 		b= new IBlock();
 	}

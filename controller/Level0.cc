@@ -2,35 +2,57 @@
 
 using namespace std;
 
+Level0::Level0(string filename): filename{filename}{
+	f= new ifstream(filename);
+	char c;
+	vector <char> seq;
+	while(*f>>c){
+		seq.emplace_back(c);
+	}
 
-Block* getNextBlock(char nextBlock = ''){
+}
+
+
+Block* Level0::getNextBlock(){
+	if(seq.size()==0){
+		return nullptr;
+	}
 	Block *b;
-	if(nextBlock=='I'){
+
+    int currChar=seq.at(0);
+
+    if(currChar=='I'){
 		b= new IBlock();
 	}
 
-	else if(nextBlock=='S'){
+	else if(currChar=='S'){
 		b= new SBlock();
 	}
 
-	else if(nextBlock=='O'){
+	else if(currChar=='O'){
 		b= new OBlock();
 	}
 
-	else if(nextBlock=='T'){
+	else if(currChar=='T'){
 		b= new TBlock();
 	}
 
-	else if(nextBlock=='Z'){
+	else if(currChar=='Z'){
 		b= new ZBlock();
 	}
 
-	else if(nextBlock=='J'){
+	else if(currChar=='J'){
 		b= new JBlock();
 	}
-	else if(nextBlock=='L'){
+	else if(currChar=='L'){
 		b= new LBlock();
 	}
-	
+
+    seq.erase(seq.begin());
+
 	return b;
+}
+
+Level0::~Level0(){
+	delete f;
 }

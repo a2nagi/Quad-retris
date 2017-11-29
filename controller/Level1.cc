@@ -2,11 +2,12 @@
 
 using namespace std;
 
-Block* Level1::getNextBlock(char nextBlock = ''){
-	
-	Block *b;
+Block* Level1::getNextBlock(){
+
 	int x = rand()%12;
 	
+	Block *b;
+
 	if(x==1 || x==4){
 		b= new IBlock();
 	}

@@ -1,11 +1,11 @@
 #include "Level4.h"
 
 using namespace std;
-
-Block* Level4::getNextBlock(char nextBlock = ''){
-	Block *b;
+Block* Level4::getNextBlock(){
 	int x = rand()%9;
 	
+	Block *b;
+
 	if(x==1){
 		b= new IBlock();
 	}
@@ -32,5 +32,6 @@ Block* Level4::getNextBlock(char nextBlock = ''){
 	else if(x==0 || x==7){
 		b= new ZBlock();
 	}
-     return b;
+
+	return b;
 }

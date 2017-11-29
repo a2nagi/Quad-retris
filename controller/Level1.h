@@ -10,12 +10,13 @@
 #include "OBlock.h"
 #include "JBlock.h"
 #include "TBlock.h"
-#include "OBlock.h"
+#include "LBlock.h"
+#include "Level.h"
 
 class Block;
 
-class Level1 {
+class Level1:public Level{
 public:
-    Block* getNextBlock(char nextBlock = '') override;
+    Block* getNextBlock() override;
 };
 #endif
