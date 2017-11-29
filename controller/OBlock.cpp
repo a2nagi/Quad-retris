@@ -41,9 +41,3 @@ void OBlock::setRotationWidth(int width) {
 
 }
 
-OBlock::~OBlock() {
-    delete c1;
-    delete c2;
-    delete c3;
-    delete c4;
-}
