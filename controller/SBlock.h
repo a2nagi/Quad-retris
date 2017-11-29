@@ -4,7 +4,10 @@
 class SBlock : public Block {
 public:
     SBlock();
-    virtual void move();
-    virtual void rotate();
+    Color getColor()override;
+    void setRotationHeight(int height)override;
+    void setRotationWidth(int width)override;
+    ~SBlock();
+
 };
 #endif //SBLOCK_H

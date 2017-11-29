@@ -4,7 +4,10 @@
 class OBlock : public Block {
 public:
     OBlock();
-    virtual void move();
-    virtual void rotate();
+    Color getColor()override;
+    void setRotationHeight(int height)override;
+    void setRotationWidth(int width)override;
+    ~OBlock();
+
 };
 #endif //OBLOCK_H

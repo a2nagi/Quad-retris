@@ -2,16 +2,6 @@
 
 using namespace std;
 
-
-TextDisplay::TextDisplay(Grid *g){
-	int rowLimit=18;
-	int colLimit=11;
-	for(int i=0;i<rowLimit;i++){
-		vector <char> row;
-		for(int j=0;j<colLimit;j++){
-			row.emplace_back(' ');
-		}
-	}
 TextDisplay::TextDisplay(Grid *g)
 {
 	theGrid=g;
@@ -42,6 +32,7 @@ ostream &operator<<(std::ostream &out, const TextDisplay &td)
 	
 	int rowLimit=18;
 	int colLimit=11
+
 	for(int t=0;t<colLimit;t++){
 		out<<"-";
 	}
@@ -60,5 +51,5 @@ ostream &operator<<(std::ostream &out, const TextDisplay &td)
 
 	out<<"Next:"<<endl;
 	//out<<NEXT BLOCK;
-	return out;	
+  return out;
 }
