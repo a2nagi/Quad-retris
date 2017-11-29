@@ -14,7 +14,6 @@ TextDisplay::TextDisplay(Grid *g)
 		{
 		    row.emplace_back(' ');
 		}
-		
 		theDisplay.emplace_back(row);
 	}
 }
@@ -23,9 +22,7 @@ TextDisplay::notify(subject &whoNotified)
 {
  	Info I=whoNotified.getInfo();
  	theDisplay[I.r][I.c]=I.blockType;
-
 }
-
 
 ostream &operator<<(std::ostream &out, const TextDisplay &td)
 {
@@ -35,26 +32,24 @@ ostream &operator<<(std::ostream &out, const TextDisplay &td)
 	
 	int rowLimit=18;
 	int colLimit=11
-	for(int t=0;t<colLimit;t++)
-	{
+
+	for(int t=0;t<colLimit;t++){
 		out<<"-";
 	}
 	out<<endl;
-	for(int i=0;i<rowLimit;i++)
-	{
-	     for(int j=0;j<colLimit;j++)
-	     {
-		 out<<theDisplay[i][j];
-	     }
-	     out<<endl;
+	for(int i=0;i<rowLimit;i++){
+		for(int j=0;j<colLimit;j++){
+			out<<theDisplay[i][j];
+		}
+	out<<endl;
 	}
 
-	for(int b=0;b<colLimit;b++)
-	{
+	for(int b=0;b<colLimit;b++){
 		out<<"-";
 	}
 	out<<endl;
-        out<<"Next:"<<endl;
-	//out<<NEXT BLOCK;//Have to add Next Block Function
-	return out;	
+
+	out<<"Next:"<<endl;
+	//out<<NEXT BLOCK;
+  return out;
 }
