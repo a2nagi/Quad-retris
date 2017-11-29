@@ -213,7 +213,6 @@ void Block::rotate(Rotate r)
         c2->setInfo(CellInfos.at(1));
         c3->setInfo(CellInfos.at(2));
         c4->setInfo(CellInfos.at(3));
-
     }
 }
 
