@@ -54,10 +54,3 @@ void IBlock::setRotationWidth(int width) {
     }
 
 }
-
-IBlock::~IBlock() {
-    delete c1;
-    delete c2;
-    delete c3;
-    delete c4;
-}
