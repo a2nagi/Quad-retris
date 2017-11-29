@@ -437,8 +437,8 @@ void Block::rotate(Rotate r)
             int newX = CellInfos.at(i).col;
             int newY = CellInfos.at(i).row;
 
-            int transformX1 = newY;
-            int transformY1 = newX;   // 1st flip, transformed x,y to be flipped along line of symmetry of figure.
+            int transformX1 = newX+1;
+            int transformY1 = newY-1;   // 1st flip, transformed x,y to be flipped along line of symmetry of figure.
 
             int transformX2 = updatedWidth-transformX1;
             int transformY2 = transformY1;   // 2nd flip , along line of symmetry of figure formed after 1st Transformation.
