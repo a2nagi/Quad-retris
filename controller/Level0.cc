@@ -31,6 +31,6 @@ Block* getNextBlock(char nextBlock = ''){
 	else if(nextBlock=='L'){
 		b= new LBlock();
 	}
-
+	
 	return b;
 }
