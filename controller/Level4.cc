@@ -2,34 +2,36 @@
 
 using namespace std;
 
-Block* Level4::getNextBlock(char nextBlock = ''){
+Block* Level4::getNextBlock(){
 	int x = rand()%9;
 	
+	Block *b;
+
 	if(x==1){
-		Block *b= new IBlock();
+		b= new IBlock();
 	}
 	else if(x==3){
-		Block *b= new LBlock();
+		b= new LBlock();
 	}
 
 	else if(x==4){
-		Block *b= new OBlock();
+		b= new OBlock();
 	}
 
 	else if(x==5){
-		Block *b= new JBlock();
+		b= new JBlock();
 	}
 
 	else if(x==6){
-		Block *b= new TBlock();
+		b= new TBlock();
 	}
 
 	else if(x==2 || x==8){
-		Block *b= new SBlock();
+		b= new SBlock();
 	}
 
 	else if(x==0 || x==7){
-		Block *b= new ZBlock();
+		b= new ZBlock();
 	}
 
 	return b;
