@@ -3,6 +3,7 @@
 using namespace std;
 
 TextDisplay::TextDisplay(Grid *g){
+	theGrid=g;
 	int rowLimit=18;
 	int colLimit=11;
 	for(int i=0;i<rowLimit;i++){
@@ -22,7 +23,7 @@ TextDisplay::notify(subject &whoNotified){
 
 
 ostream &operator<<(std::ostream &out, const TextDisplay &td){
-	out<<"Level:"<<"      "<<g.getLevel()<<endl;
+	out<<"Level:"<<"      "<<g.getLevel()<<endl;//Not sure if these correlate to the actual funtions, but shouldnt be a task
 	out<<"Score:"<<"      "<<g.getScore()<<endl;
 	out<<"Hi Score:"<<"  "<<g.getHiScore()<<endl;
 	
@@ -45,6 +46,6 @@ ostream &operator<<(std::ostream &out, const TextDisplay &td){
 	out<<endl;
 
 	out<<"Next:"<<endl;
-	//out<<NEXT BLOCK;
+	//out<<NEXT BLOCK;//Have to add Next Block Function
 	return out;	
 }
