@@ -4,31 +4,32 @@ using namespace std;
 
 
 Block* getNextBlock(char nextBlock = ''){
+	Block *b;
 	if(nextBlock=='I'){
-		Block *b= new IBlock();
+		b= new IBlock();
 	}
 
 	else if(nextBlock=='S'){
-		Block *b= new SBlock();
+		b= new SBlock();
 	}
 
 	else if(nextBlock=='O'){
-		Block *b= new OBlock();
+		b= new OBlock();
 	}
 
 	else if(nextBlock=='T'){
-		Block *b= new TBlock();
+		b= new TBlock();
 	}
 
 	else if(nextBlock=='Z'){
-		Block *b= new ZBlock();
+		b= new ZBlock();
 	}
 
 	else if(nextBlock=='J'){
-		Block *b= new JBlock();
+		b= new JBlock();
 	}
 	else if(nextBlock=='L'){
-		Block *b= new LBlock();
+		b= new LBlock();
 	}
 
 	return b;
