@@ -7,7 +7,5 @@ public:
     Color getColor()override;
     void setRotationHeight(int height)override;
     void setRotationWidth(int width)override;
-    ~OBlock();
-
 };
 #endif //OBLOCK_H
