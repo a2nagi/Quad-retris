@@ -52,11 +52,3 @@ void ZBlock::setRotationWidth(int width) {
     }
 }
 
-ZBlock::~ZBlock() {
-
-    delete c1;
-    delete c2;
-    delete c3;
-    delete c4;
-
-}
