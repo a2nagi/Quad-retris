@@ -3,6 +3,7 @@
 using namespace std;
 
 Block* Level1::getNextBlock(){
+
 	int x = rand()%12;
 	
 	Block *b;

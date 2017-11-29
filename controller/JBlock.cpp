@@ -53,9 +53,4 @@ void JBlock::setRotationWidth(int width) {
     }
 }
 
-JBlock::~JBlock() {
-    delete c1;
-    delete c2;
-    delete c3;
-    delete c4;
-}
+

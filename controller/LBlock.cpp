@@ -51,10 +51,3 @@ void LBlock::setRotationWidth(int width) {
         updatedWidth = 1;
     }
 }
-
-LBlock::~LBlock() {
-    delete c1;
-    delete c2;
-    delete c3;
-    delete c4;
-}

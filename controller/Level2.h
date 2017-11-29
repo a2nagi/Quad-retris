@@ -2,6 +2,18 @@
 
 using namespace std;
 
+#include <cstdlib>
+#include "Block.h"
+#include "IBlock.h"
+#include "SBlock.h"
+#include "ZBlock.h"
+#include "OBlock.h"
+#include "JBlock.h"
+#include "TBlock.h"
+#include "LBlock.h"
+
+class Block;
+
 Block* Level2::getNextBlock(){
 	int x = rand()%7;
 	Block *b;

@@ -216,3 +216,11 @@ void Block::rotate(Rotate r)
     }
 }
 
+Block::~Block()
+{
+    delete c1;
+    delete c2;
+    delete c3;
+    delete c4;
+}
+

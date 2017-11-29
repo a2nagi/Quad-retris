@@ -1,8 +1,8 @@
 #include "Level3.h"
 
 using namespace std;
-
 Block* Level3::getNextBlock(){
+
 	int x = rand()%9;
 	Block *b;
 

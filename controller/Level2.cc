@@ -3,33 +3,33 @@
 using namespace std;
 
 Block* Level2::getNextBlock(char nextBlock = ''){
+	Block *b;
 	int x = rand()%7;
-	
 	if(x==1){
-		Block *b= new IBlock();
+		b= new IBlock();
 	}
 	else if(x==3){
-		Block *b= new LBlock();
+		b= new LBlock();
 	}
 
 	else if(x==4){
-		Block *b= new OBlock();
+		b= new OBlock();
 	}
 
 	else if(x==5){
-		Block *b= new JBlock();
+		b= new JBlock();
 	}
 
 	else if(x==6){
-		Block *b= new TBlock();
+		b= new TBlock();
 	}
 
 	else if(x==2){
-		Block *b= new SBlock();
+		b= new SBlock();
 	}
 
 	else if(x==0){
-		Block *b= new ZBlock();
+		b= new ZBlock();
 	}
 
 	return b;

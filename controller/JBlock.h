@@ -7,6 +7,5 @@ public:
     Color getColor()override;
     void setRotationHeight(int height)override;
     void setRotationWidth(int width)override;
-    ~JBlock();
 };
 #endif //JBLOCK_H

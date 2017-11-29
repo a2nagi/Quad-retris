@@ -1,7 +1,6 @@
 #include "Level4.h"
 
 using namespace std;
-
 Block* Level4::getNextBlock(){
 	int x = rand()%9;
 	

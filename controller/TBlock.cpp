@@ -52,9 +52,3 @@ void TBlock::setRotationWidth(int width) {
     }
 }
 
-TBlock::~TBlock() {
-    delete c1;
-    delete c2;
-    delete c3;
-    delete c4;
-}

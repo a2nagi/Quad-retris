@@ -28,6 +28,6 @@ public:
     virtual void setRotationHeight(int height)=0;
     int getHeight();
     int getWidth();
-    virtual ~Block(){};
+    virtual ~Block();
 };
 #endif

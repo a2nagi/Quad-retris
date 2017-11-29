@@ -1,6 +1,7 @@
 #include "Level0.h"
 
 using namespace std;
+
 Level0::Level0(string filename): filename{filename}{
 	f= new ifstream(filename);
 	char c;
