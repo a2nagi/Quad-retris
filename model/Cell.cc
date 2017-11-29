@@ -13,14 +13,10 @@ void Cell::setPiece(char blockType) {
     notifyObservers();
 }
 
-void Cell::notify(Subject &whoFrom) {
-    if ( whoFrom.getState().type ==  StateType ::NewPiece ) {
-
-    }
-}
-
 bool Cell::setInfo(Info &i) {
-    if()
+    r = i.row;
+    c = i.col;
+    blockType = i.blockType;
 }
 
 Info Cell::getInfo() const {

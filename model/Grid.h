@@ -21,26 +21,26 @@ private:
     int rows;
     int highScore;
     int levelNumber;
-    bool isCurrentRowFull();
+    bool isCurrentRowFull(int row);
     //void getNextBlock();
     void updateLevel(int requestedLevel);
     bool copyBlockIntoGrid(Block * block);
+    void eraseRow(int row);
 public:
     Grid();
     void initGrid();
     void dropBlock();
-    void insertNewBlock(Block *block);
-    void updateCurrentBlock();
     int getLevel();
     int getScore();
     int getHighScore();
     void moveCurrentBlockLeftRight(Direction d);
     void rotateBlock(Rotate r);
-    void moveCurrentBlockDown();
+    bool moveCurrentBlockDown();
     void nextLevel();
     void levelDown();
     Block* getCurrentBlock();
     Block* getNextBlock();
     void changeBlockToGridCoordinates();
+    void showHint();
 };
 #endif //GRID_H

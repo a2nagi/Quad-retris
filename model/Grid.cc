@@ -8,8 +8,15 @@
 
 using namespace std;
 
-bool Grid::isCurrentRowFull() {
-
+bool Grid::isCurrentRowFull(int row) {
+    bool isFull = false;
+    for( int i = 0; i < cols; i++) {
+        if(theGrid.at(row).at(i).getInfo().blockType == ' ') {
+            isFull = true;
+            break;
+        }
+    }
+    return isFull;
 }
 
 Grid::Grid() {
@@ -52,13 +59,6 @@ void Grid::changeBlockToGridCoordinates() {
     }
 }
 
-void Grid::insertNewBlock(Block *block) {
-    // if insertion fails it means game over
-    vector<Cell * > x = block->getCells();
-
-}
-
-
 void Grid::updateLevel(int requestedLevel) {
     delete currentLevel;
     switch (requestedLevel) {
@@ -77,12 +77,63 @@ void Grid::updateLevel(int requestedLevel) {
     }
 }
 
-void Grid::dropBlock() {
-    
+void Grid::showHint() {
+    //ToDo
 }
 
-void Grid::moveCurrentBlockDown() {
+void Grid::eraseRow(int row) {
+    if(row == 15) return;
+    for( int i = 0; i < cols; i++ ) {
+        theGrid.at(row).at(i) = theGrid.at(row+1).at(i);
+    }
+    eraseRow(row+1);
+}
 
+void Grid::dropBlock() {
+    vector<Cell *> allCells = currentBlock->getCells();
+    Cell *minCell = allCells.at(0);
+    for(int i = 1; i < allCells.size(); i++) {
+        if( allCells.at(i)->getInfo().row < minCell->getInfo().row ) {
+            minCell = allCells.at(i);
+        }
+    }
+
+    int i = minCell->getInfo().row;
+    while ( i >= 0 ) {
+        moveCurrentBlockDown();
+        i--;
+    }
+}
+
+bool Grid::moveCurrentBlockDown() {
+    vector<Cell*> blocks = currentBlock->getCells();
+    Block currentBlockCopy = *currentBlock;
+    try {
+        currentBlockCopy.move(Direction::down);
+        bool canMove = copyBlockIntoGrid(&currentBlockCopy);
+        if(!canMove) {
+            // Block is already placed in the correct location
+            for(Cell *c: blocks) {
+                if(isCurrentRowFull(c->getInfo().row)) {
+                    eraseRow(c->getInfo().row);
+                }
+            }
+            return false;
+        }
+        else {
+            vector<Cell *> cells = currentBlock->getCells();
+            for(Cell *c: cells) {
+                if(c->getInfo().row >= 15 ) {
+                    throw gameOver();
+                }
+            }
+        }
+    }
+    catch (out_of_range&) {
+        return false;
+    }
+    *currentBlock = currentBlockCopy;
+    return true;
 }
 
 void Grid::nextLevel() {
