@@ -8,14 +8,14 @@ struct Info;
 
 class Subject {
   std::vector<Observer> observers;
-  StateType state;
+  State state;
  protected:
-  void setState(StateType newS);
+  void setState(State newS);
  public:
   void attach(Observer *o);
   void notifyObservers();
   virtual Info getInfo() const = 0;
-  StateType getState() const;
+  State getState() const;
 };
 
 void Subject::attach(Observer *o) {
@@ -26,7 +26,7 @@ void Subject::notifyObservers() {
   for (auto &ob : observers) ob->notify(*this);
 }
 
-void Subject::setState(StateType newS) { state = newS; }
+void Subject::setState(State newS) { state = newS; }
 
-StateType Subject::getState() const { return state; }
+State Subject::getState() const { return state; }
 #endif
