@@ -4,8 +4,9 @@
 class TBlock : public Block {
 public:
     TBlock();
-    void move(Direction d);
-    void rotate(Rotate r);
-    Color getColor();
+    Color getColor()override;
+    void setRotationHeight(int height)override;
+    void setRotationWidth(int width)override;
+    ~TBlock();
 };
 #endif //TBLOCK_H
