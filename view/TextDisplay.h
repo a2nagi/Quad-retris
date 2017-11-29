@@ -11,7 +11,7 @@
 #include "../Model/Subject.h"
 #include "Grid.h"
 
-Class Cell;
+class Cell;
 
 class TextDisplay:public Observer{
 	Grid theGrid;
