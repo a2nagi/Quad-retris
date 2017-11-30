@@ -9,9 +9,13 @@
 #include <fstream>
 #include "Block.h"
 #include "Level.h"
+#include "../model/Grid.h"
+
 
 class Controller {
+    Grid *g;
 public:
+    Controller(Grid *g);
     void parseCommand();
 };
 #endif
