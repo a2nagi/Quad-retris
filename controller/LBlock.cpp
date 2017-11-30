@@ -1,4 +1,5 @@
 #include "LBlock.h"
+#include "../model/Cell.h"
 
 Color LBlock::getColor() {
     return Color::BLUE;

@@ -1,4 +1,6 @@
 #include "TBlock.h"
+#include "../model/Cell.h"
+
 Color TBlock::getColor() {
     return Color::SKIN;
 }

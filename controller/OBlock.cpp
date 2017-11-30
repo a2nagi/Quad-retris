@@ -1,4 +1,5 @@
 #include "OBlock.h"
+#include "../model/Cell.h"
 
 Color OBlock::getColor() {
     return Color::TEAL;

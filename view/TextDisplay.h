@@ -1,15 +1,13 @@
-//
-// Created by Harkamal on 2017-11-24.
-//
 
 #ifndef TEXTDISPLAY_H
 #define TEXTDISPLAY_H
 
 #include <iostream>
 #include <vector>
-#include "../Model/Observer.h"
-#include "../Model/Subject.h"
-#include "../Model/Grid.h"
+#include "../model/Observer.h"
+#include "../model/Subject.h"
+#include "../model/Grid.h"
+#include "../model/Info.h"
 
 class Cell;
 

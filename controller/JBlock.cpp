@@ -1,4 +1,5 @@
 #include "JBlock.h"
+#include "../model/Cell.h"
 
 Color JBlock::getColor() {
     return Color::BLACK;

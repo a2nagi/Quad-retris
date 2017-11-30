@@ -18,20 +18,21 @@ TextDisplay::TextDisplay(Grid *g)
 	}
 }
 
-TextDisplay::notify(subject &whoNotified)
+void TextDisplay::notify(Subject &whoNotified)
 {
- 	Info I=whoNotified.getInfo();
- 	theDisplay[I.r][I.c]=I.blockType;
+ 	Info I = whoNotified.getInfo();
+ 	theDisplay[I.row][I.col]=I.blockType;
 }
 
 ostream &operator<<(std::ostream &out, const TextDisplay &td)
 {
-	out<<"Level:"<<"      "<<g.getLevel()<<endl;//Not sure if these correlate to the actual funtions, but shouldnt be a task
-	out<<"Score:"<<"      "<<g.getScore()<<endl;
-	out<<"Hi Score:"<<"  "<<g.getHiScore()<<endl;
+	//Todo
+	out<<"Level:"<<"      "<<td.theGrid->getLevel()<<endl;//Not sure if these correlate to the actual funtions, but shouldnt be a task
+	out<<"Score:"<<"      "<<td.theGrid->getScore()<<endl;
+	out<<"Hi Score:"<<"  "<<td.theGrid->getHighScore()<<endl;
 	
 	int rowLimit=18;
-	int colLimit=11
+	int colLimit=11;
 
 	for(int t=0;t<colLimit;t++){
 		out<<"-";
@@ -39,7 +40,7 @@ ostream &operator<<(std::ostream &out, const TextDisplay &td)
 	out<<endl;
 	for(int i=0;i<rowLimit;i++){
 		for(int j=0;j<colLimit;j++){
-			out<<theDisplay[i][j];
+			out<<td.theDisplay[i][j];
 		}
 	out<<endl;
 	}

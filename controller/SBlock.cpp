@@ -1,4 +1,6 @@
 #include "SBlock.h"
+#include "../model/Cell.h"
+
 Color SBlock::getColor() {
     return Color::VIOLET;
 }

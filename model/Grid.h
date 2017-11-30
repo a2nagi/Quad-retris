@@ -13,6 +13,7 @@ class gameOver{};
 class Grid {
 private:
     std::vector<std::vector<Cell>> theGrid;
+    std::vector<Level *> allLevels;
     Block* currentBlock;
     Block* nextBlock;
     Level* currentLevel;
@@ -28,7 +29,7 @@ private:
     void eraseRow(int row);
 public:
     Grid();
-    void initGrid();
+    void initGrid(std::string level= "");
     void dropBlock();
     int getLevel();
     int getScore();
@@ -42,5 +43,6 @@ public:
     Block* getNextBlock();
     void changeBlockToGridCoordinates();
     void showHint();
+    ~Grid();
 };
 #endif //GRID_H

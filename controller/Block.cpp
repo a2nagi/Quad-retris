@@ -1,34 +1,56 @@
 #include "Block.h"
+#include "../model/Cell.h"
+
 using namespace std;
 
-Block::Block(const Block &other)
-{
-    this->c1=new Cell(other.c1->getInfo().row,other.c1->getInfo().col);
-    this->c2=new Cell(other.c2->getInfo().row,other.c2->getInfo().col);
-    this->c3=new Cell(other.c3->getInfo().row,other.c3->getInfo().col);
-    this->c4=new Cell(other.c4->getInfo().row,other.c4->getInfo().col);
+//Block::Block(const Block &other)
+//{
+//    this->c1=new Cell(other.c1->getInfo().row,other.c1->getInfo().col);
+//    this->c2=new Cell(other.c2->getInfo().row,other.c2->getInfo().col);
+//    this->c3=new Cell(other.c3->getInfo().row,other.c3->getInfo().col);
+//    this->c4=new Cell(other.c4->getInfo().row,other.c4->getInfo().col);
+//}
+
+vector<Cell *> Block::copyCells() {
+    vector<Cell *> allCells;
+    allCells.emplace_back(new Cell(this->c1->getInfo().row, this->c1->getInfo().col));
+    allCells.emplace_back(new Cell(this->c2->getInfo().row, this->c2->getInfo().col));
+    allCells.emplace_back(new Cell(this->c3->getInfo().row, this->c3->getInfo().col));
+    allCells.emplace_back(new Cell(this->c4->getInfo().row, this->c4->getInfo().col));
+    return allCells;
 }
 
-Block& Block::operator=(const Block &other)
-{
-    if(this==&other)
-    {
-        return *this;
-    }
-    else
-    {
-        // a=b;
-        delete c1;
-        delete c2;
-        delete c3;
-        delete c4;
-        this->c1=new Cell(other.c1->getInfo().row,other.c1->getInfo().col);
-        this->c2=new Cell(other.c2->getInfo().row,other.c2->getInfo().col);
-        this->c3=new Cell(other.c3->getInfo().row,other.c3->getInfo().col);
-        this->c4=new Cell(other.c4->getInfo().row,other.c4->getInfo().col);
-        return *this;
-    }
+void Block::setCells(std::vector<Cell *> allCells) {
+    delete c1;
+    delete c2;
+    delete c3;
+    delete c4;
+    c1 = allCells.at(0);
+    c2 = allCells.at(1);
+    c3 = allCells.at(2);
+    c4 = allCells.at(3);
 }
+
+//Block& Block::operator=(const Block &other)
+//{
+//    if(this==&other)
+//    {
+//        return *this;
+//    }
+//    else
+//    {
+//        // a=b;
+//        delete c1;
+//        delete c2;
+//        delete c3;
+//        delete c4;
+//        this->c1=new Cell(other.c1->getInfo().row,other.c1->getInfo().col);
+//        this->c2=new Cell(other.c2->getInfo().row,other.c2->getInfo().col);
+//        this->c3=new Cell(other.c3->getInfo().row,other.c3->getInfo().col);
+//        this->c4=new Cell(other.c4->getInfo().row,other.c4->getInfo().col);
+//        return *this;
+//    }
+//}
 
 int Block::getHeight() {
     vector<Info> CellInfos(4);  // Vector of Cell infos except the Lower Left Preserved

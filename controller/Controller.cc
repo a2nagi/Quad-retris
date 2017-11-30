@@ -1,3 +1,11 @@
+#include <iostream>
+#include <regex>
+#include <sstream>
+#include <string>
+#include <fstream>
+#include "Block.h"
+#include "Level.h"
+#include "../model/Grid.h"
 #include "Controller.h"
 
 using namespace std;
@@ -47,7 +55,7 @@ void Controller::parseCommand(){
 
         else if(regex_match(s,down)){
             for(int i=0;i<multiple;i++){
-                g->moveCurrentBlockDown(Direction::down);
+                g->moveCurrentBlockDown();
             }
         }
 

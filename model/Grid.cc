@@ -3,8 +3,11 @@
 #include "Grid.h"
 #include "../controller/Block.h"
 #include "Cell.h"
-#include "../controller/Level.h"
-#include "Info.h"
+#include "../controller/Level0.h"
+#include "../controller/Level1.h"
+#include "../controller/Level2.h"
+#include "../controller/Level3.h"
+#include "../controller/Level4.h"
 
 using namespace std;
 
@@ -25,7 +28,12 @@ Grid::Grid() {
     highScore = 0;
     score = 0;
 }
-void Grid::initGrid() {
+void Grid::initGrid(string level) {
+    allLevels.emplace_back(new Level0(level));
+    allLevels.emplace_back(new Level1());
+    allLevels.emplace_back(new Level2());
+    allLevels.emplace_back(new Level3());
+    allLevels.emplace_back(new Level4());
     theGrid.clear();
 
     for( int i = 0; i < rows; i++ ) {
@@ -35,7 +43,7 @@ void Grid::initGrid() {
         }
     }
     highScore = max(highScore, score);
-    currentLevel = new Level0();
+    currentLevel = allLevels.at(0);
     levelNumber = 0;
     score = 0;
     currentBlock = currentLevel->getNextBlock();
@@ -59,20 +67,25 @@ void Grid::changeBlockToGridCoordinates() {
     }
 }
 
+Grid::~Grid() {
+    for(int i = 0; i < allLevels.size(); i++) {
+        delete allLevels.at(i);
+    }
+}
+
 void Grid::updateLevel(int requestedLevel) {
-    delete currentLevel;
     switch (requestedLevel) {
         case 0:
-            currentLevel = new Level0();
+            currentLevel = allLevels.at(0);
             break;
         case 1:
-            currentLevel = new Level1();
+            currentLevel = allLevels.at(1);
             break;
         case 2:
-            currentLevel = new Level2();
+            currentLevel = allLevels.at(2);
             break;
         case 3:
-            currentLevel = new Level3();
+            currentLevel = allLevels.at(3);
             break;
     }
 }
@@ -107,10 +120,10 @@ void Grid::dropBlock() {
 
 bool Grid::moveCurrentBlockDown() {
     vector<Cell*> blocks = currentBlock->getCells();
-    Block currentBlockCopy = *currentBlock;
+    vector<Cell *> cellCopy = currentBlock->copyCells();
     try {
-        currentBlockCopy.move(Direction::down);
-        bool canMove = copyBlockIntoGrid(&currentBlockCopy);
+        currentBlock->move(Direction::down);
+        bool canMove = copyBlockIntoGrid(currentBlock);
         if(!canMove) {
             // Block is already placed in the correct location
             for(Cell *c: blocks) {
@@ -130,9 +143,9 @@ bool Grid::moveCurrentBlockDown() {
         }
     }
     catch (out_of_range&) {
+        currentBlock->setCells(cellCopy);
         return false;
     }
-    *currentBlock = currentBlockCopy;
     return true;
 }
 
@@ -190,28 +203,28 @@ bool Grid::copyBlockIntoGrid(Block *block) {
 
 void Grid::moveCurrentBlockLeftRight(Direction d) {
     vector<Cell*> blocks = currentBlock->getCells();
-    Block currentBlockCopy = *currentBlock;
+    vector<Cell*> cellCopy = currentBlock->copyCells();
     try {
-        currentBlockCopy.move(d);
-        copyBlockIntoGrid(&currentBlockCopy);
+        currentBlock->move(d);
+        copyBlockIntoGrid(currentBlock);
     }
     catch (out_of_range&) {
+        currentBlock->setCells(cellCopy);
         return;
     }
-    *currentBlock = currentBlockCopy;
 }
 
 void Grid::rotateBlock(Rotate r) {
     vector<Cell*> blocks = currentBlock->getCells();
-    Block currentBlockCopy = *currentBlock;
+    vector<Cell*> cellCopy = currentBlock->copyCells();
     try {
-        currentBlockCopy.rotate(r);
-        copyBlockIntoGrid(&currentBlockCopy);
+        currentBlock->rotate(r);
+        copyBlockIntoGrid(currentBlock);
     }
     catch (out_of_range&) {
+        currentBlock->setCells(cellCopy);
         return;
     }
-    *currentBlock = currentBlockCopy;
 }
 
 Block* Grid::getCurrentBlock() {

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Block* Level2::getNextBlock(char nextBlock = ''){
+Block* Level2::getNextBlock(){
 	Block *b;
 	int x = rand()%7;
 	if(x==1){

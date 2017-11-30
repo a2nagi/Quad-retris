@@ -1,4 +1,5 @@
 #include "IBlock.h"
+#include "../model/Cell.h"
 
 Color IBlock::getColor() {
    return Color::RED;

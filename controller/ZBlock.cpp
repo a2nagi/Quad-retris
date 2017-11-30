@@ -1,4 +1,6 @@
 #include "ZBlock.h"
+#include "../model/Cell.h"
+
 Color ZBlock::getColor() {
     return Color::PEACH;
 }
