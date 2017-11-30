@@ -7,7 +7,6 @@
 #include <sstream>
 #include <cstdlib>
 
-
 using namespace std;
 
 int main(int argc, char *argv[]) {
@@ -18,3 +17,4 @@ int main(int argc, char *argv[]) {
     TextDisplay t(&g);
     c.parseCommand();
 }
+
