@@ -9,12 +9,12 @@
 #include <vector>
 #include "../Model/Observer.h"
 #include "../Model/Subject.h"
-#include "Grid.h"
+#include "../Model/Grid.h"
 
 class Cell;
 
 class TextDisplay:public Observer{
-	Grid theGrid;
+	Grid *theGrid;
 	std::vector<std::vector<char>> theDisplay;
 public:
 	TextDisplay();
