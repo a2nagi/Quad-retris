@@ -19,3 +19,5 @@ public:
     void parseCommand();
 };
 #endif
+
+#endif

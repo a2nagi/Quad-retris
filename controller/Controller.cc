@@ -6,6 +6,7 @@ Controller::Controller(Grid *g): g{g} {}
 
 void Controller::parseCommand(){
 
+
     string s;
     bool match;
     int multiple=1;
@@ -121,3 +122,4 @@ void Controller::parseCommand(){
 
     }
 }
+

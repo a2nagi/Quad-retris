@@ -3,7 +3,7 @@
 #include <vector>
 #include "../model/Cell.h"
 #include "../model/State.h"
-
+#include "../model/Info.h"
 
 class Cell;
 enum Color {RED, BLACK, PEACH, SKIN, TEAL, VIOLET, BLUE};
