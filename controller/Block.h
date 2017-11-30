@@ -3,6 +3,7 @@
 #include <vector>
 #include "../model/Cell.h"
 #include "../model/State.h"
+#include "../model/Info.h"
 
 
 class Cell;
