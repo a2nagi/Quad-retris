@@ -17,7 +17,7 @@ class TextDisplay:public Observer{
 	Grid *theGrid;
 	std::vector<std::vector<char>> theDisplay;
 public:
-	TextDisplay();
+	TextDisplay(Grid *g);
 	void notify(Subject &whoNotified) override;
 	friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
 };
