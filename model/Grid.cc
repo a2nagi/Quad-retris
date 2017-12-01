@@ -259,8 +259,8 @@ void Grid::moveCurrentBlockLeftRight(Direction d, int times) {
                 else {
                     currentBlock->move(Direction::right);
                 }
+                break;
             }
-            break;
         }
         emptyCellsInGrid(cellCopy);
         copyBlockIntoGrid(currentBlock);

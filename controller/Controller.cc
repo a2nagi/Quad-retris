@@ -42,6 +42,9 @@ void Controller::parseCommand(){
         if(isdigit(s[0])) {
             multiple = stoi(s);
         }
+        else {
+            multiple = 1;
+        }
 
         if(regex_search(s,left)){
             g->moveCurrentBlockLeftRight(Direction::left, multiple);
