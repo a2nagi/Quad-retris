@@ -58,14 +58,14 @@ void Block::setCells(std::vector<Cell *> allCells) {
 //}
 
 int Block::getHeight() {
-    vector<Info> CellInfos(4);  // Vector of Cell infos except the Lower Left Preserved
+    vector<Info> CellInfos;  // Vector of Cell infos except the Lower Left Preserved
 
     CellInfos.emplace_back(c1->getInfo());
     CellInfos.emplace_back(c2->getInfo());
     CellInfos.emplace_back(c3->getInfo());
     CellInfos.emplace_back(c4->getInfo());
 
-    vector<int> calcHeight(4);
+    vector<int> calcHeight;
     for (int i = 0; i < CellInfos.size(); i++) {
         calcHeight.emplace_back(CellInfos.at(i).row);
     }
@@ -172,7 +172,7 @@ void Block::rotate(Rotate r)
 
     char colour=c1->getInfo().blockType;
 
-    vector<Info> CellInfos(4);
+    vector<Info> CellInfos;
 
     CellInfos.emplace_back(c1->getInfo());
     CellInfos.emplace_back(c2->getInfo());

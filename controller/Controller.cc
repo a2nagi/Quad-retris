@@ -62,16 +62,14 @@ void Controller::parseCommand(){
         }
 
         else if(regex_search(s,clockwise)){
-            for(int i=0;i<multiple;i++){
-                g->rotateBlock(Rotate::clockWise);
-            }
+            multiple = multiple%4;
+            g->rotateBlock(Rotate::clockWise, multiple);
             cout<<*td;
         }
 
         else if(regex_search(s,counterclockwise)){
-            for(int i=0;i<multiple;i++){
-                g->rotateBlock(Rotate::counterClockWise);
-            }
+            multiple = multiple%4;
+            g->rotateBlock(Rotate::counterClockWise, multiple);
             cout<<*td;
         }
 

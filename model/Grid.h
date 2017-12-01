@@ -42,7 +42,7 @@ public:
     int getScore();
     int getHighScore();
     void moveCurrentBlockLeftRight(Direction d, int times);
-    void rotateBlock(Rotate r);
+    void rotateBlock(Rotate r, int multiple);
     bool moveCurrentBlockDown(int times);
     void nextLevel();
     void levelDown();

@@ -267,16 +267,26 @@ void Grid::moveCurrentBlockLeftRight(Direction d, int times) {
     }
 }
 
-void Grid::rotateBlock(Rotate r) {
-    vector<Cell*> blocks = currentBlock->getCells();
-    vector<Cell*> cellCopy = currentBlock->copyCells();
-    try {
+void Grid::rotateBlock(Rotate r, int multiple) {
+    for(int i = 0 ; i < multiple; i++) {
+        vector<Cell*> blocks = currentBlock->getCells();
+        vector<Cell*> cellCopy = currentBlock->copyCells();
         currentBlock->rotate(r);
+        for(Cell *c : blocks){
+            int row = c->getInfo().row;
+            int col = c->getInfo().col;
+            if(col >= theGrid.at(0).size() || row >= theGrid.size()) {
+                if(r == Rotate::counterClockWise) {
+                    currentBlock->rotate(Rotate::clockWise);
+                }
+                else {
+                    currentBlock->rotate(Rotate::counterClockWise);
+                }
+                break;
+            }
+        }
+        emptyCellsInGrid(cellCopy);
         copyBlockIntoGrid(currentBlock);
-    }
-    catch (out_of_range&) {
-        currentBlock->setCells(cellCopy);
-        return;
     }
 }
 
