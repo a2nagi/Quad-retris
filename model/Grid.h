@@ -49,6 +49,7 @@ public:
     Block* getNextBlock();
     void changeBlockToGridCoordinates();
     void showHint();
+    TextDisplay* getTextDisplay();
     ~Grid();
 };
 #endif //GRID_H
