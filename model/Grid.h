@@ -44,8 +44,8 @@ public:
     void moveCurrentBlockLeftRight(Direction d, int times);
     void rotateBlock(Rotate r, int multiple);
     bool moveCurrentBlockDown(int times);
-    void nextLevel();
-    void levelDown();
+    void nextLevel(int counter);
+    void levelDown(int counter);
     Block* getCurrentBlock();
     Block* getNextBlock();
     void changeBlockToGridCoordinates();

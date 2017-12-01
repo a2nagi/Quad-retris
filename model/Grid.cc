@@ -107,6 +107,9 @@ void Grid::updateLevel(int requestedLevel) {
         case 3:
             currentLevel = allLevels.at(3);
             break;
+        case 4:
+            currentLevel = allLevels.at(4);
+            break;
     }
 }
 
@@ -123,19 +126,7 @@ void Grid::eraseRow(int row) {
 }
 
 void Grid::dropBlock() {
-    vector<Cell *> allCells = currentBlock->getCells();
-    Cell *minCell = allCells.at(0);
-    for(int i = 1; i < allCells.size(); i++) {
-        if( allCells.at(i)->getInfo().row < minCell->getInfo().row ) {
-            minCell = allCells.at(i);
-        }
-    }
-
-    int i = minCell->getInfo().row;
-//    while ( i >= 0 ) {
-//        moveCurrentBlockDown();
-//        i--;
-//    }
+    moveCurrentBlockDown(18);
 }
 
 void Grid::emptyCellsInGrid(vector<Cell *> cells) {
@@ -197,19 +188,19 @@ TextDisplay* Grid::getTextDisplay() {
     return td;
 }
 
-void Grid::nextLevel() {
-    if( this->levelNumber == 3 ) {
+void Grid::nextLevel(int counter) {
+    if( this->levelNumber+counter > 4 ) {
         return;
     }
-    this->levelNumber++;
+    this->levelNumber+=counter;
     updateLevel(this->levelNumber);
 }
 
-void Grid::levelDown() {
-    if( this->levelNumber == 0 ) {
+void Grid::levelDown(int counter) {
+    if( this->levelNumber-counter < 0 ) {
         return;
     }
-    this->levelNumber--;
+    this->levelNumber-=counter;
     updateLevel(this->levelNumber);
 }
 

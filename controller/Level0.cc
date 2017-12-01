@@ -6,6 +6,7 @@ Level0::Level0(string filename): filename{filename}{
 	f= new ifstream(filename);
 	char c;
 	vector <char> seq;
+	setLevel(0);
 	while(*f>>c){
 		seq.emplace_back(c);
 	}
