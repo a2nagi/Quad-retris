@@ -16,5 +16,6 @@ int main(int argc, char *argv[]) {
     g.initGrid();
     Controller c(&g);
     c.parseCommand();
+
 }
 
