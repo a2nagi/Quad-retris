@@ -2,8 +2,8 @@
 #define CELL_H
 
 #include <cstddef>
-#include "subject.h"
-#include "observer.h"
+#include "Subject.h"
+#include "Observer.h"
 
 class Cell : public Subject {
     size_t r, c;

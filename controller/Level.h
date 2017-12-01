@@ -6,5 +6,6 @@ class Block;
 class Level {
 public:
     virtual Block *getNextBlock() = 0;
+    virtual ~Level(){};
 };
 #endif

@@ -4,6 +4,7 @@
 #include <vector>
 #include "../controller/Level.h"
 #include "State.h"
+#include <string>
 
 class Cell;
 class Block;

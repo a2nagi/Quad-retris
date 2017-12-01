@@ -7,7 +7,7 @@ public:
     Color getColor()override;
     void setRotationHeight(int height)override;
     void setRotationWidth(int width)override;
-    std::string toString();
+    std::string toString() override ;
 };
 
 #endif //ZBLOCK_H
