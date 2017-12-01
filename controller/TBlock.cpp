@@ -7,29 +7,18 @@ Color TBlock::getColor() {
 
 TBlock::TBlock()
 {
-    Info t1;
-    t1.row=3;
-    t1.col=1;
-    t1.blockType='T';
-    c1->setInfo(t1);
+    c1 = new Cell(0, 1);
+    c1->setPiece('T');
 
-    Info t2;
-    t2.row=2;
-    t2.col=0;
-    t2.blockType='T';
-    c2->setInfo(t2);
+    c2 = new Cell(1, 0);
+    c2->setPiece('T');
 
-    Info t3;
-    t3.row=2;
-    t3.col=1;
-    t3.blockType='T';
-    c3->setInfo(t3);
+    c3 = new Cell(1, 1);
+    c3->setPiece('T');
 
-    Info t4;
-    t4.row=2;
-    t4.col=2;
-    t4.blockType='T';
-    c4->setInfo(t4);
+    c4 = new Cell(1, 2);
+    c4->setPiece('T');
+
 }
 
 void TBlock::setRotationHeight(int height) {
@@ -54,3 +43,6 @@ void TBlock::setRotationWidth(int width) {
     }
 }
 
+std::string TBlock::toString() {
+    return "TTT\n T ";
+}

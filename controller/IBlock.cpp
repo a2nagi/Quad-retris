@@ -1,34 +1,26 @@
+#include <iostream>
 #include "IBlock.h"
 #include "../model/Cell.h"
+
+using namespace std;
 
 Color IBlock::getColor() {
    return Color::RED;
 }
 
 IBlock::IBlock() {
-    Info i1;
-    i1.row=3;
-    i1.col=0;
-    i1.blockType='I';
-    c1->setInfo(i1);
 
-    Info i2;
-    i2.row=3;
-    i2.col=1;
-    i2.blockType='I';
-    c2->setInfo(i2);
+    c1 = new Cell(0, 0);
+    c1->setPiece('I');
 
-    Info i3;
-    i3.row=3;
-    i3.col=2;
-    i3.blockType='I';
-    c3->setInfo(i3);
+    c2 = new Cell(0, 1);
+    c2->setPiece('I');
 
-    Info i4;
-    i4.row=3;
-    i4.col=3;
-    i4.blockType='I';
-    c4->setInfo(i4);
+    c3 = new Cell(0, 2);
+    c3->setPiece('I');
+
+    c4 = new Cell(0,3);
+    c4->setPiece('I');
 }
 
 void IBlock::setRotationHeight(int height)
@@ -54,4 +46,8 @@ void IBlock::setRotationWidth(int width) {
         updatedWidth = 0;
     }
 
+}
+
+string IBlock::toString() {
+    return "IIII";
 }

@@ -6,29 +6,17 @@ Color LBlock::getColor() {
 }
 
 LBlock::LBlock() {
-    Info l1;
-    l1.row=3;
-    l1.col=0;
-    l1.blockType='L';
-    c1->setInfo(l1);
+    c1 = new Cell(0, 0);
+    c1->setPiece('L');
 
-    Info l2;
-    l2.row=3;
-    l2.col=1;
-    l2.blockType='L';
-    c2->setInfo(l2);
+    c2 = new Cell(0, 1);
+    c2->setPiece('L');
 
-    Info l3;
-    l3.row=3;
-    l3.col=2;
-    l3.blockType='L';
-    c3->setInfo(l3);
+    c3 = new Cell(0, 3);
+    c3->setPiece('L');
 
-    Info l4;
-    l4.row=2;
-    l4.col=2;
-    l4.blockType='L';
-    c4->setInfo(l4);
+    c4 = new Cell(1, 3);
+    c4->setPiece('L');
 }
 
 void LBlock::setRotationHeight(int height) {
@@ -51,4 +39,8 @@ void LBlock::setRotationWidth(int width) {
     {
         updatedWidth = 1;
     }
+}
+
+std::string LBlock::toString() {
+    return "  L\nLLL";
 }

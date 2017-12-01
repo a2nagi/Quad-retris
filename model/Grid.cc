@@ -8,6 +8,7 @@
 #include "../controller/Level2.h"
 #include "../controller/Level3.h"
 #include "../controller/Level4.h"
+#include "../view/TextDisplay.h"
 
 using namespace std;
 
@@ -28,18 +29,29 @@ Grid::Grid() {
     highScore = 0;
     score = 0;
 }
+
+int Grid::getRows() {
+    return rows;
+}
+
+int Grid::getColumns() {
+    return cols;
+}
+
 void Grid::initGrid(string level) {
+    if(level != "")
     allLevels.emplace_back(new Level0(level));
     allLevels.emplace_back(new Level1());
     allLevels.emplace_back(new Level2());
     allLevels.emplace_back(new Level3());
     allLevels.emplace_back(new Level4());
     theGrid.clear();
-
+    td = new TextDisplay(this);
     for( int i = 0; i < rows; i++ ) {
         theGrid.emplace_back(vector<Cell>());
         for( int j = 0 ; j < cols ; j++ ) {
             theGrid.at(i).emplace_back(Cell(i, j));
+            theGrid.at(i).at(j).attach(td);
         }
     }
     highScore = max(highScore, score);
@@ -48,7 +60,9 @@ void Grid::initGrid(string level) {
     score = 0;
     currentBlock = currentLevel->getNextBlock();
     changeBlockToGridCoordinates();
+    copyBlockIntoGrid(currentBlock);
     nextBlock = currentLevel->getNextBlock();
+    cout << *td;
 }
 
 void Grid::changeBlockToGridCoordinates() {

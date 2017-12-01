@@ -7,29 +7,18 @@ Color ZBlock::getColor() {
 
 ZBlock::ZBlock() {
 
-    Info z1;
-    z1.row=2;
-    z1.col=0;
-    z1.blockType='Z';
-    c1->setInfo(z1);
+    c1 = new Cell(1, 0);
+    c1->setPiece('Z');
 
-    Info z2;
-    z2.row=2;
-    z2.col=1;
-    z2.blockType='Z';
-    c2->setInfo(z2);
+    c2 = new Cell(1,1);
+    c2->setPiece('Z');
 
-    Info z3;
-    z3.row=3;
-    z3.col=1;
-    z3.blockType='Z';
-    c3->setInfo(z3);
+    c3 = new Cell(0, 1);
+    c3->setPiece('Z');
 
-    Info z4;
-    z4.row=3;
-    z4.col=2;
-    z4.blockType='Z';
-    c4->setInfo(z4);
+    c4 = new Cell(0, 2);
+    c4->setPiece('Z');
+
 }
 
 void ZBlock::setRotationHeight(int height) {
@@ -54,3 +43,6 @@ void ZBlock::setRotationWidth(int width) {
     }
 }
 
+std::string ZBlock::toString() {
+    return "ZZ\n ZZ";
+}

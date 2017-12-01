@@ -7,29 +7,18 @@ Color SBlock::getColor() {
 
 SBlock::SBlock()
 {
-    Info s1;
-    s1.row=3;
-    s1.col=0;
-    s1.blockType='S';
-    c1->setInfo(s1);
+    c1 = new Cell(0, 0);
+    c1->setPiece('S');
 
-    Info s2;
-    s2.row=3;
-    s2.col=1;
-    s2.blockType='S';
-    c2->setInfo(s2);
+    c2 = new Cell(1,1);
+    c2->setPiece('S');
 
-    Info s3;
-    s3.row=2;
-    s3.col=1;
-    s3.blockType='S';
-    c3->setInfo(s3);
+    c3 = new Cell(0, 1);
+    c3->setPiece('S');
 
-    Info s4;
-    s4.row=2;
-    s4.col=2;
-    s4.blockType='S';
-    c4->setInfo(s4);
+    c4 = new Cell(1, 2);
+    c4->setPiece('S');
+
 }
 
 void SBlock::setRotationHeight(int height) {
@@ -54,3 +43,6 @@ void SBlock::setRotationWidth(int width) {
     }
 }
 
+std::string SBlock::toString() {
+    return " SS\nSS";
+}

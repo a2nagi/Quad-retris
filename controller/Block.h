@@ -1,6 +1,7 @@
 #ifndef BLOCK_H
 #define BLOCK_H
 #include <vector>
+#include <string>
 #include "../model/Info.h"
 
 class Cell;
@@ -12,7 +13,7 @@ protected:
     int updatedWidth;
     Cell *c1, *c2, *c3, *c4;
 public:
-    Block(){};
+    Block();
 //    Block(const Block& other);
 //    Block& operator=(const Block &other);
     void move(Direction d);
@@ -26,6 +27,7 @@ public:
     virtual Color getColor()=0;
     virtual void setRotationWidth(int width)=0;
     virtual void setRotationHeight(int height)=0;
+    virtual std::string toString()=0;
     int getHeight();
     int getWidth();
     virtual ~Block();

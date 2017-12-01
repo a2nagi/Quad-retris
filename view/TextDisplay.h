@@ -13,6 +13,8 @@ class Cell;
 
 class TextDisplay:public Observer{
 	Grid *theGrid;
+	int colLimit;
+	int rowLimit;
 	std::vector<std::vector<char>> theDisplay;
 public:
 	TextDisplay(Grid *g);

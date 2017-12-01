@@ -1,35 +1,26 @@
 #include "JBlock.h"
 #include "../model/Cell.h"
 
+using namespace std;
+
 Color JBlock::getColor() {
     return Color::BLACK;
 }
 
 
 JBlock::JBlock() {
-    Info j1;
-    j1.row=2;
-    j1.col=0;
-    j1.blockType='J';
-    c1->setInfo(j1);
+    c1 = new Cell(0, 0);
+    c1->setPiece('J');
 
-    Info j2;
-    j2.row=3;
-    j2.col=0;
-    j2.blockType='J';
-    c2->setInfo(j2);
+    c2 = new Cell(1, 0);
+    c2->setPiece('J');
 
-    Info i3;
-    i3.row=3;
-    i3.col=1;
-    i3.blockType='J';
-    c3->setInfo(i3);
+    c3 = new Cell(0, 2);
+    c3->setPiece('J');
 
-    Info j4;
-    j4.row=3;
-    j4.col=2;
-    j4.blockType='J';
-    c4->setInfo(j4);
+    c4 = new Cell(0, 3);
+    c4->setPiece('J');
+
 }
 
 void JBlock::setRotationHeight(int height) {
@@ -54,4 +45,7 @@ void JBlock::setRotationWidth(int width) {
     }
 }
 
+string JBlock::toString() {
+    return "J\nJJJ";
+}
 

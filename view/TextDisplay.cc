@@ -1,12 +1,13 @@
 #include "TextDisplay.h"
+#include "../controller/Block.h"
 
 using namespace std;
 
-TextDisplay::TextDisplay(Grid *g)
+TextDisplay::TextDisplay(Grid *g) : theGrid(g)
 {
-	theGrid=g;
-	int rowLimit=18;
-	int colLimit=11;
+	rowLimit = g->getRows();
+	colLimit = g->getColumns();
+
 	for(int i=0;i<rowLimit;i++)
 	{
 		vector <char> row;
@@ -27,30 +28,28 @@ void TextDisplay::notify(Subject &whoNotified)
 ostream &operator<<(std::ostream &out, const TextDisplay &td)
 {
 	//Todo
-	out<<"Level:"<<"      "<<td.theGrid->getLevel()<<endl;//Not sure if these correlate to the actual funtions, but shouldnt be a task
-	out<<"Score:"<<"      "<<td.theGrid->getScore()<<endl;
-	out<<"Hi Score:"<<"  "<<td.theGrid->getHighScore()<<endl;
-	
-	int rowLimit=18;
-	int colLimit=11;
+    out << "Level:     " << td.theGrid->getLevel() << endl;
+    out << "Score:     " << td.theGrid->getScore() << endl;
+    out << "Hi Score:  " << td.theGrid->getHighScore() << endl;
 
-	for(int t=0;t<colLimit;t++){
+	for(int t=0;t<td.colLimit;t++){
 		out<<"-";
 	}
 	out<<endl;
-	for(int i=0;i<rowLimit;i++){
-		for(int j=0;j<colLimit;j++){
+	for(int i=0;i<td.rowLimit;i++){
+		for(int j=0;j<td.colLimit;j++){
 			out<<td.theDisplay[i][j];
 		}
 	out<<endl;
 	}
 
-	for(int b=0;b<colLimit;b++){
+	for(int b=0;b<td.colLimit;b++){
 		out<<"-";
 	}
 	out<<endl;
 
 	out<<"Next:"<<endl;
+    out << td.theGrid->getNextBlock()->toString() << endl;
 	//out<<NEXT BLOCK;
   return out;
 }

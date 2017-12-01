@@ -8,6 +8,7 @@
 class Cell;
 class Block;
 class Info;
+class TextDisplay;
 
 class gameOver{};
 class Grid {
@@ -27,8 +28,11 @@ private:
     void updateLevel(int requestedLevel);
     bool copyBlockIntoGrid(Block * block);
     void eraseRow(int row);
+    TextDisplay *td;
 public:
     Grid();
+    int getRows();
+    int getColumns();
     void initGrid(std::string level= "");
     void dropBlock();
     int getLevel();

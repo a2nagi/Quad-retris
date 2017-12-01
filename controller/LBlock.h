@@ -7,5 +7,6 @@ public:
     Color getColor()override;
     void setRotationHeight(int height)override;
     void setRotationWidth(int width)override;
+    std::string toString() override ;
 };
 #endif //LBLOCK_H

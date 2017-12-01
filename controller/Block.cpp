@@ -11,6 +11,7 @@ using namespace std;
 //    this->c4=new Cell(other.c4->getInfo().row,other.c4->getInfo().col);
 //}
 
+Block::Block() {}
 vector<Cell *> Block::copyCells() {
     vector<Cell *> allCells;
     allCells.emplace_back(new Cell(this->c1->getInfo().row, this->c1->getInfo().col));
