@@ -250,6 +250,7 @@ void Grid::moveCurrentBlockLeftRight(Direction d, int times) {
         vector<Cell*> cellCopy = currentBlock->copyCells();
         try {
             currentBlock->move(d);
+            emptyCellsInGrid(cellCopy);
             copyBlockIntoGrid(currentBlock);
         }
         catch (out_of_range&) {
