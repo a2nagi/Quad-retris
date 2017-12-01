@@ -7,10 +7,11 @@
 #include "Level.h"
 #include "../model/Grid.h"
 #include "Controller.h"
+#include "../view/TextDisplay.h"
 
 using namespace std;
 
-Controller::Controller(Grid *g): g{g} {}
+Controller::Controller(Grid *g,TextDisplay *td): g{g},td{td} {};
 
 void Controller::parseCommand(){
 
@@ -45,34 +46,40 @@ void Controller::parseCommand(){
             for(int i=0;i<multiple;i++){
                 g->moveCurrentBlockLeftRight(Direction::left);
             }
+            cout<<*td;
         }
 
         else if(regex_search(s,right)){
             for(int i=0;i<multiple;i++){
                 g->moveCurrentBlockLeftRight(Direction::right);
             }
+            cout<<*td;
         }
 
         else if(regex_search(s,down)){
             for(int i=0;i<multiple;i++){
                 g->moveCurrentBlockDown();
             }
+            cout<<*td;
         }
 
         else if(regex_search(s,clockwise)){
             for(int i=0;i<multiple;i++){
                 g->rotateBlock(Rotate::clockWise);
             }
+            cout<<*td;
         }
 
         else if(regex_search(s,counterclockwise)){
             for(int i=0;i<multiple;i++){
                 g->rotateBlock(Rotate::counterClockWise);
             }
+            cout<<*td;
         }
 
         else if(regex_search(s,drop)){
             g->dropBlock();
+            cout<<*td;
         }
         else {
             throw "Command not supported";

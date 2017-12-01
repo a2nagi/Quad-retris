@@ -4,8 +4,9 @@
 class Grid;
 class Controller {
     Grid *g;
+    TextDisplay *td;
 public:
-    Controller(Grid *g);
+    Controller(Grid *g,TextDisplay *td);
     void parseCommand();
 };
 #endif
