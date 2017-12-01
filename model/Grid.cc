@@ -189,7 +189,7 @@ bool Grid::moveCurrentBlockDown() {
 }
 
 TextDisplay* Grid::getTextDisplay() {
-
+    return td;
 }
 
 void Grid::nextLevel() {

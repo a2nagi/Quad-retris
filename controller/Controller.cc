@@ -11,7 +11,9 @@
 
 using namespace std;
 
-Controller::Controller(Grid *g,TextDisplay *td): g{g},td{td} {};
+Controller::Controller(Grid *g,TextDisplay *td): g{g},td{td} {
+    cout << *td;
+};
 
 void Controller::parseCommand(){
 

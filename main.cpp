@@ -14,7 +14,8 @@ int main(int argc, char *argv[]) {
     // 1st Argument=argv[1];
     Grid g;
     g.initGrid();
-    Controller c(&g);
+    TextDisplay *td = g.getTextDisplay();
+    Controller c(&g, td);
     c.parseCommand();
 
 }
