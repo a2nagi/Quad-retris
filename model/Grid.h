@@ -41,9 +41,9 @@ public:
     int getLevel();
     int getScore();
     int getHighScore();
-    void moveCurrentBlockLeftRight(Direction d);
+    void moveCurrentBlockLeftRight(Direction d, int times);
     void rotateBlock(Rotate r);
-    bool moveCurrentBlockDown();
+    bool moveCurrentBlockDown(int times);
     void nextLevel();
     void levelDown();
     Block* getCurrentBlock();

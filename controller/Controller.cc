@@ -44,24 +44,17 @@ void Controller::parseCommand(){
         }
 
         if(regex_search(s,left)){
-
-            for(int i=0;i<multiple;i++){
-                g->moveCurrentBlockLeftRight(Direction::left);
-            }
+            g->moveCurrentBlockLeftRight(Direction::left, multiple);
             cout<<*td;
         }
 
         else if(regex_search(s,right)){
-            for(int i=0;i<multiple;i++){
-                g->moveCurrentBlockLeftRight(Direction::right);
-            }
+            g->moveCurrentBlockLeftRight(Direction::right, multiple);
             cout<<*td;
         }
 
         else if(regex_search(s,down)){
-            for(int i=0;i<multiple;i++){
-                g->moveCurrentBlockDown();
-            }
+            g->moveCurrentBlockDown(multiple);
             cout<<*td;
         }
 

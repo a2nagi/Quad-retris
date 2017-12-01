@@ -132,10 +132,10 @@ void Grid::dropBlock() {
     }
 
     int i = minCell->getInfo().row;
-    while ( i >= 0 ) {
-        moveCurrentBlockDown();
-        i--;
-    }
+//    while ( i >= 0 ) {
+//        moveCurrentBlockDown();
+//        i--;
+//    }
 }
 
 void Grid::emptyCellsInGrid(vector<Cell *> cells) {
@@ -146,44 +146,49 @@ void Grid::emptyCellsInGrid(vector<Cell *> cells) {
     }
 }
 
-bool Grid::moveCurrentBlockDown() {
-    vector<Cell*> blocks = currentBlock->getCells();
-    vector<Cell *> cellCopy = currentBlock->copyCells();
-    currentBlock->move(Direction::down);
-    emptyCellsInGrid(cellCopy);
-    bool canMove = copyBlockIntoGrid(currentBlock);
-    if(canMove) {
-        vector<Cell *> cells = currentBlock->getCells();
-        for(Cell *c: cells) {
-            if(c->getInfo().row >= 15 ) {
-                throw gameOver();
-            }
-        }
-        bool moveNext = false;
-        for(Cell *c: blocks) {
-            if(isCurrentRowFull(c->getInfo().row)) {
-                eraseRow(c->getInfo().row);
-                moveNext = true;
-            }
-        }
-        if(!moveNext) {
-            vector<Cell *> minRowCells = currentBlock->getMinRows();
-            for(Cell *c: minRowCells) {
-                int row = c->getInfo().row;
-                int col = c->getInfo().col;
-                if ( row == 0 || theGrid.at(row-1).at(col).getInfo().blockType != ' ' ) {
-                    moveNext = true;
-                    break;
+bool Grid::moveCurrentBlockDown(int times) {
+    bool canMove = false;
+    for(int i = 0; i < times; i++) {
+        vector<Cell*> blocks = currentBlock->getCells();
+        vector<Cell *> cellCopy = currentBlock->copyCells();
+        currentBlock->move(Direction::down);
+        emptyCellsInGrid(cellCopy);
+        bool canMove = copyBlockIntoGrid(currentBlock);
+        if(canMove) {
+            vector<Cell *> cells = currentBlock->getCells();
+            for(Cell *c: cells) {
+                if(c->getInfo().row >= 15 ) {
+                    throw gameOver();
                 }
             }
+            bool moveNext = false;
+            for(Cell *c: blocks) {
+                if(isCurrentRowFull(c->getInfo().row)) {
+                    eraseRow(c->getInfo().row);
+                    moveNext = true;
+                }
+            }
+            if(!moveNext) {
+                vector<Cell *> minRowCells = currentBlock->getMinRows();
+                for(Cell *c: minRowCells) {
+                    int row = c->getInfo().row;
+                    int col = c->getInfo().col;
+                    if ( row == 0 || theGrid.at(row-1).at(col).getInfo().blockType != ' ' ) {
+                        moveNext = true;
+                        break;
+                    }
+                }
+            }
+            if(moveNext) {
+                moveToNextBlock();
+                break;
+            }
         }
-        if(moveNext) {
-            moveToNextBlock();
+        else {
+            break;
         }
     }
-    else {
-        throw "Invalid move should not run :(";
-    }
+
     return canMove;
 
 }
@@ -239,16 +244,18 @@ bool Grid::copyBlockIntoGrid(Block *block) {
     return true;
 }
 
-void Grid::moveCurrentBlockLeftRight(Direction d) {
-    vector<Cell*> blocks = currentBlock->getCells();
-    vector<Cell*> cellCopy = currentBlock->copyCells();
-    try {
-        currentBlock->move(d);
-        copyBlockIntoGrid(currentBlock);
-    }
-    catch (out_of_range&) {
-        currentBlock->setCells(cellCopy);
-        return;
+void Grid::moveCurrentBlockLeftRight(Direction d, int times) {
+    for(int i = 0 ; i < times; i++) {
+        vector<Cell*> blocks = currentBlock->getCells();
+        vector<Cell*> cellCopy = currentBlock->copyCells();
+        try {
+            currentBlock->move(d);
+            copyBlockIntoGrid(currentBlock);
+        }
+        catch (out_of_range&) {
+            currentBlock->setCells(cellCopy);
+            return;
+        }
     }
 }
 
