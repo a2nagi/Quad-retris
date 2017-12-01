@@ -30,6 +30,7 @@ public:
     virtual std::string toString()=0;
     int getHeight();
     int getWidth();
+    std::vector<Cell *> getMinRows();
     virtual ~Block();
 };
 #endif

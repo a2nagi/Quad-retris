@@ -148,10 +148,10 @@ void Block::move(Direction d){
 
     else if(d==Direction::down)
     {
-        leftMost.row+=1;
-        nextToLeft.row+=1;
-        nextToRight.row+=1;
-        rightMost.row+=1;
+        leftMost.row-=1;
+        nextToLeft.row-=1;
+        nextToRight.row-=1;
+        rightMost.row-=1;
     }
 
     c1->setInfo(leftMost);
@@ -239,6 +239,10 @@ void Block::rotate(Rotate r)
     }
 }
 
+std::vector<Cell *> Block::getMinRows() {
+
+}
+
 Block::~Block()
 {
     delete c1;
@@ -246,4 +250,3 @@ Block::~Block()
     delete c3;
     delete c4;
 }
-

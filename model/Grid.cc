@@ -15,7 +15,7 @@ using namespace std;
 bool Grid::isCurrentRowFull(int row) {
     bool isFull = false;
     for( int i = 0; i < cols; i++) {
-        if(theGrid.at(row).at(i).getInfo().blockType == ' ') {
+        if(theGrid.at(row).at(i).getInfo().blockType != ' ') {
             isFull = true;
             break;
         }
@@ -59,6 +59,14 @@ void Grid::initGrid(string level) {
     levelNumber = 0;
     score = 0;
     currentBlock = currentLevel->getNextBlock();
+    changeBlockToGridCoordinates();
+    copyBlockIntoGrid(currentBlock);
+    nextBlock = currentLevel->getNextBlock();
+    cout << *td;
+}
+
+void Grid::moveToNextBlock() {
+    currentBlock = nextBlock;
     changeBlockToGridCoordinates();
     copyBlockIntoGrid(currentBlock);
     nextBlock = currentLevel->getNextBlock();
@@ -132,35 +140,52 @@ void Grid::dropBlock() {
     }
 }
 
+void Grid::emptyCellsInGrid(vector<Cell *> cells) {
+    for(int i = 0; i < cells.size(); i++) {
+        int row = cells.at(i)->getInfo().row;
+        int col = cells.at(i)->getInfo().col;
+        theGrid.at(row).at(col).setPiece(' ');
+    }
+}
+
 bool Grid::moveCurrentBlockDown() {
     vector<Cell*> blocks = currentBlock->getCells();
     vector<Cell *> cellCopy = currentBlock->copyCells();
     try {
         currentBlock->move(Direction::down);
+        emptyCellsInGrid(cellCopy);
         bool canMove = copyBlockIntoGrid(currentBlock);
-        if(!canMove) {
-            // Block is already placed in the correct location
-            for(Cell *c: blocks) {
-                if(isCurrentRowFull(c->getInfo().row)) {
-                    eraseRow(c->getInfo().row);
-                }
-            }
-            return false;
-        }
-        else {
+        if(canMove) {
             vector<Cell *> cells = currentBlock->getCells();
             for(Cell *c: cells) {
                 if(c->getInfo().row >= 15 ) {
                     throw gameOver();
                 }
             }
+            bool moveNext = false;
+            for(Cell *c: blocks) {
+                if(isCurrentRowFull(c->getInfo().row)) {
+                    eraseRow(c->getInfo().row);
+                    moveNext = true;
+                }
+            }
+            if(!moveNext) {
+
+            }
+            if(moveNext) {
+                moveToNextBlock();
+            }
         }
+        else {
+
+            throw "Invalid move should not run :(";
+        }
+        return canMove;
     }
     catch (out_of_range&) {
         currentBlock->setCells(cellCopy);
         return false;
     }
-    return true;
 }
 
 void Grid::nextLevel() {
@@ -207,11 +232,6 @@ bool Grid::copyBlockIntoGrid(Block *block) {
         theGrid.at(row).at(col).setPiece(c->getInfo().blockType);
     }
 
-    for(Cell *c: currentBlock->getCells()) {
-        int row = c->getInfo().row;
-        int col = c->getInfo().col;
-        theGrid.at(row).at(col).setPiece(' ');
-    }
     return true;
 }
 

@@ -36,9 +36,9 @@ ostream &operator<<(std::ostream &out, const TextDisplay &td)
 		out<<"-";
 	}
 	out<<endl;
-	for(int i=0;i<td.rowLimit;i++){
+	for(int i=td.rowLimit-1;i>=0;i--){
 		for(int j=0;j<td.colLimit;j++){
-			out<<td.theDisplay[i][j];
+			out<<td.theDisplay.at(i).at(j);
 		}
 	out<<endl;
 	}

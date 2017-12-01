@@ -12,10 +12,10 @@ LBlock::LBlock() {
     c2 = new Cell(0, 1);
     c2->setPiece('L');
 
-    c3 = new Cell(0, 3);
+    c3 = new Cell(0, 2);
     c3->setPiece('L');
 
-    c4 = new Cell(1, 3);
+    c4 = new Cell(1, 2);
     c4->setPiece('L');
 }
 

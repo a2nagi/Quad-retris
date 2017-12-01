@@ -28,6 +28,8 @@ private:
     void updateLevel(int requestedLevel);
     bool copyBlockIntoGrid(Block * block);
     void eraseRow(int row);
+    void emptyCellsInGrid(std::vector<Cell *> cells);
+    void moveToNextBlock();
     TextDisplay *td;
 public:
     Grid();

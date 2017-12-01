@@ -15,10 +15,10 @@ JBlock::JBlock() {
     c2 = new Cell(1, 0);
     c2->setPiece('J');
 
-    c3 = new Cell(0, 2);
+    c3 = new Cell(0, 1);
     c3->setPiece('J');
 
-    c4 = new Cell(0, 3);
+    c4 = new Cell(0, 2);
     c4->setPiece('J');
 
 }

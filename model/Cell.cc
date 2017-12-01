@@ -7,6 +7,7 @@ Cell::Cell(size_t r, size_t c):r(r), c(c) {
 
 void Cell::setPiece(char blockType) {
     this->blockType = blockType;
+    notifyObservers();
 }
 
 bool Cell::setInfo(Info &i) {
