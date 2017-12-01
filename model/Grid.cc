@@ -247,16 +247,22 @@ bool Grid::copyBlockIntoGrid(Block *block) {
 void Grid::moveCurrentBlockLeftRight(Direction d, int times) {
     for(int i = 0 ; i < times; i++) {
         vector<Cell*> blocks = currentBlock->getCells();
-        vector<Cell*> cellCopy = currentBlock->copyCells();
-        try {
-            currentBlock->move(d);
-            emptyCellsInGrid(cellCopy);
-            copyBlockIntoGrid(currentBlock);
+        currentBlock->move(d);
+        for(Cell *c : blocks){
+            int row = c->getInfo().row;
+            int col = c->getInfo().col;
+            if(col >= theGrid.at(0).size() || row >= theGrid.size()) {
+                if(d == Direction::right) {
+                    currentBlock->move(Direction::left);
+                }
+                else {
+                    currentBlock->move(Direction::right);
+                }
+            }
+            break;
         }
-        catch (out_of_range&) {
-            currentBlock->setCells(cellCopy);
-            return;
-        }
+        emptyCellsInGrid(blocks);
+        copyBlockIntoGrid(currentBlock);
     }
 }
 

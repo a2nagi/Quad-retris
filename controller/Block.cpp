@@ -30,6 +30,10 @@ void Block::setCells(std::vector<Cell *> allCells) {
     c2 = allCells.at(1);
     c3 = allCells.at(2);
     c4 = allCells.at(3);
+    c1->notifyObservers();
+    c2->notifyObservers();
+    c3->notifyObservers();
+    c4->notifyObservers();
 }
 
 //Block& Block::operator=(const Block &other)
