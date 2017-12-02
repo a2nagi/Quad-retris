@@ -43,6 +43,10 @@ void Grid::makeCurrentLevelRandom() {
     currentLevel->setRandomBlock(true);
 }
 
+void Grid::clearGrid() {
+
+}
+
 void Grid::makeCurrentLevelFromFile(std::string fileName) {
     if(levelNumber < 3) return;
     currentLevel->readFile(fileName);
