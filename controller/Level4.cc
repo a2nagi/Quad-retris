@@ -13,32 +13,30 @@ Block* Level4::getNextBlock() {
 	int x = rand()%9;
 	Block *b;
 
-	if(x==1){
-		b= new IBlock();
+	switch(x) {
+		case 0:
+			b = new IBlock();
+			break;
+		case 1:
+			b = new LBlock();
+			break;
+		case 2:
+			b = new OBlock();
+			break;
+		case 3:
+			b = new JBlock();
+			break;
+		case 4:
+			b = new TBlock();
+			break;
+		case 5:
+		case 6:
+			b = new SBlock();
+			break;
+		case 7:
+		case 8:
+			b = new ZBlock();
+			break;
 	}
-	else if(x==3){
-		b= new LBlock();
-	}
-
-	else if(x==4){
-		b= new OBlock();
-	}
-
-	else if(x==5){
-		b= new JBlock();
-	}
-
-	else if(x==6){
-		b= new TBlock();
-	}
-
-	else if(x==2 || x==8){
-		b= new SBlock();
-	}
-
-	else if(x==0 || x==7){
-		b= new ZBlock();
-	}
-
 	return b;
 }
