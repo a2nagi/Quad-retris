@@ -31,6 +31,7 @@ public:
     int getHeight();
     int getWidth();
     std::vector<Cell *> getMinRows();
+    int getMinCols();
     virtual ~Block();
 };
 #endif

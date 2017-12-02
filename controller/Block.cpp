@@ -4,14 +4,6 @@
 
 using namespace std;
 
-//Block::Block(const Block &other)
-//{
-//    this->c1=new Cell(other.c1->getInfo().row,other.c1->getInfo().col);
-//    this->c2=new Cell(other.c2->getInfo().row,other.c2->getInfo().col);
-//    this->c3=new Cell(other.c3->getInfo().row,other.c3->getInfo().col);
-//    this->c4=new Cell(other.c4->getInfo().row,other.c4->getInfo().col);
-//}
-
 Block::Block() {}
 vector<Cell *> Block::copyCells() {
     vector<Cell *> allCells;
@@ -36,27 +28,6 @@ void Block::setCells(std::vector<Cell *> allCells) {
     c3->notifyObservers();
     c4->notifyObservers();
 }
-
-//Block& Block::operator=(const Block &other)
-//{
-//    if(this==&other)
-//    {
-//        return *this;
-//    }
-//    else
-//    {
-//        // a=b;
-//        delete c1;
-//        delete c2;
-//        delete c3;
-//        delete c4;
-//        this->c1=new Cell(other.c1->getInfo().row,other.c1->getInfo().col);
-//        this->c2=new Cell(other.c2->getInfo().row,other.c2->getInfo().col);
-//        this->c3=new Cell(other.c3->getInfo().row,other.c3->getInfo().col);
-//        this->c4=new Cell(other.c4->getInfo().row,other.c4->getInfo().col);
-//        return *this;
-//    }
-//}
 
 int Block::getHeight() {
     vector<Info> CellInfos;  // Vector of Cell infos except the Lower Left Preserved
@@ -89,40 +60,6 @@ int Block::getHeight() {
     // calculate height in above two loops.
 
     return maxHeight-minHeight;
-}
-
-int Block::getWidth()
-{
-    vector<Info> CellInfos(4);  // Vector of Cell infos except the Lower Left Preserved
-
-    CellInfos.emplace_back(c1->getInfo());
-    CellInfos.emplace_back(c2->getInfo());
-    CellInfos.emplace_back(c3->getInfo());
-    CellInfos.emplace_back(c4->getInfo());
-
-    vector<int> calcWidth(4);
-    for (unsigned int i = 0; i < CellInfos.size(); i++) {
-        calcWidth.emplace_back(CellInfos.at(i).col);
-    }
-
-
-    int maxWidth=calcWidth.at(0);
-    int minWidth=calcWidth.at(0);
-    for (unsigned int j = 0; j < calcWidth.size(); j++)
-    {
-        if (calcWidth.at(j) > maxWidth)
-        {
-            maxWidth = calcWidth.at(j);
-        }
-
-        if (calcWidth.at(j) < minWidth)
-        {
-            minWidth = calcWidth.at(j);
-        }
-    }
-
-    return maxWidth-minWidth;
-
 }
 
 void Block::move(Direction d){
@@ -184,15 +121,18 @@ void Block::rotate()
 
     for (unsigned int i = 0; i < CellInfos.size(); i++) {
 
+        int minCols=getMinCols();
         int rowMin=this->getMinRows().at(0)->getInfo().row;
+
         int curX = CellInfos.at(i).row - rowMin;
-        int curY = CellInfos.at(i).col;
+        int curY = CellInfos.at(i).col-minCols;
 
         int tr1X = curY;
         int tr1Y = curX;
 
-        int tr2Y = tr1Y;
+        int tr2Y = tr1Y+minCols;
         int tr2X = updatedHeight-tr1X+rowMin;
+
 
 
             CellInfos.at(i).row=tr2X;
@@ -223,6 +163,31 @@ vector<Cell *> Block::getMinRows() {
         }
     }
     return minCells;
+}
+
+int Block::getMinCols() {
+    vector<Info> CellInfos;  // Vector of Cell infos except the Lower Left Preserved
+
+    CellInfos.emplace_back(c1->getInfo());
+    CellInfos.emplace_back(c2->getInfo());
+    CellInfos.emplace_back(c3->getInfo());
+    CellInfos.emplace_back(c4->getInfo());
+
+    vector<int> calcWidth;
+    for (int i = 0; i < CellInfos.size(); i++) {
+        calcWidth.emplace_back(CellInfos.at(i).col);
+    }
+
+    int minWidth=calcWidth.at(0);
+    for (int j = 0; j < calcWidth.size(); j++)
+    {
+
+        if (calcWidth.at(j) < minWidth)
+        {
+            minWidth = calcWidth.at(j);
+        }
+    }
+    return minWidth;
 }
 
 Block::~Block()
