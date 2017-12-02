@@ -1,6 +1,7 @@
 #include "Block.h"
 #include "../model/Cell.h"
 
+
 using namespace std;
 
 //Block::Block(const Block &other)
@@ -166,12 +167,9 @@ void Block::move(Direction d){
 }
 
 
-void Block::rotate(Rotate r)
+void Block::rotate()
 {
-
-
     char colour=c1->getInfo().blockType;
-
     vector<Info> CellInfos;
 
     CellInfos.emplace_back(c1->getInfo());
@@ -180,28 +178,26 @@ void Block::rotate(Rotate r)
     CellInfos.emplace_back(c4->getInfo());
 
 
-    if (r == Rotate::clockWise)
-
-    {
-        int height = getHeight();
-        setRotationHeight(height);
-
-        for (int i = 0; i < CellInfos.size(); i++)
-        {
-            int newX = CellInfos.at(i).col;
-            int newY = CellInfos.at(i).row;
-
-            int transformX1 = newY;
-            int transformY1 = newX;   // 1st flip, transformed x,y to be flipped along line of symmetry of figure.
-
-            int transformX2 = transformX1;
-            int transformY2 = updatedHeight - transformY1;   // 2nd flip , along line of symmetry of figure formed after 1st Transformation.
+    int height = getHeight();
+    setRotationHeight(height);
 
 
-            CellInfos.at(i).row=transformX2;
-            CellInfos.at(i).col=transformY2;
+    for (int i = 0; i < CellInfos.size(); i++) {
+
+        int rowMin=this->getMinRows().at(0)->getInfo().row;
+        int curX = CellInfos.at(i).row - rowMin;
+        int curY = CellInfos.at(i).col;
+
+        int tr1X = curY;
+        int tr1Y = curX;
+
+        int tr2Y = tr1Y;
+        int tr2X = updatedHeight-tr1X+rowMin;
+
+
+            CellInfos.at(i).row=tr2X;
+            CellInfos.at(i).col=tr2Y;
             CellInfos.at(i).blockType=colour;
-
 
         }
 
@@ -209,39 +205,8 @@ void Block::rotate(Rotate r)
         c2->setInfo(CellInfos.at(1));
         c3->setInfo(CellInfos.at(2));
         c4->setInfo(CellInfos.at(3));
-    }
-
-
-    else if(r==Rotate::counterClockWise)
-
-    {
-        int width = getWidth();
-        setRotationWidth(width);
-
-
-        for (int i = 0; i < CellInfos.size(); i++)
-        {
-            int newX = CellInfos.at(i).col;
-            int newY = CellInfos.at(i).row;
-
-            int transformX1 = newY;
-            int transformY1 = newX;   // 1st flip, transformed x,y to be flipped along line of symmetry of figure.
-
-            int transformX2 = updatedWidth-transformX1;
-            int transformY2 = transformY1;   // 2nd flip , along line of symmetry of figure formed after 1st Transformation.
-
-
-            CellInfos.at(i).row=transformX2;
-            CellInfos.at(i).col=transformY2;
-            CellInfos.at(i).blockType=colour;
-        }
-
-        c1->setInfo(CellInfos.at(0));
-        c2->setInfo(CellInfos.at(1));
-        c3->setInfo(CellInfos.at(2));
-        c4->setInfo(CellInfos.at(3));
-    }
 }
+
 
 vector<Cell *> Block::getMinRows() {
     vector<Cell *> allCells = this->getCells();

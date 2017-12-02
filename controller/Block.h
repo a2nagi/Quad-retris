@@ -17,7 +17,7 @@ public:
 //    Block(const Block& other);
 //    Block& operator=(const Block &other);
     void move(Direction d);
-    void rotate(Rotate r);
+    void rotate();
     std::vector<Cell *> getCells() {
         std::vector<Cell *> allCells = {c1,c2,c3,c4};
         return allCells;
