@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
 
     // 1st Argument=argv[1];
     bool isOnlyText = false;
-    int i = 0;
+    int i = 1;
     int seed = getpid();
     string fileName = "sequence.txt";
     int startLevel = 0;
@@ -45,11 +45,13 @@ int main(int argc, char *argv[]) {
         }
         i++;
     }
-
+    //Set seed
+    srand(seed);
     Grid g;
-    g.initGrid();
+    isOnlyText = true;
+    g.initGrid(fileName, startLevel, isOnlyText);
     TextDisplay *td = g.getTextDisplay();
     Controller c(&g, td);
-    c.parseCommand();
+    c.parseCommand(&cin);
 }
 

@@ -16,12 +16,13 @@ private:
 public:
     Level();
     virtual Block *getNextBlock() = 0;
-    int getLevel() { return  level;};
-    void setLevel(int level) {this->level = level;}
+    int getLevel();
+    void setLevel(int level);
     void readFile(std::string file);
     void setRandomBlock(bool isRandom);
     bool getIsRandom();
     Block* getBlockFromFile();
+    Block* getBlockByChar(char block);
     virtual ~Level();
 };
 #endif

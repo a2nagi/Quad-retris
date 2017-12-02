@@ -43,8 +43,13 @@ void Level::readFile(string file) {
 Block* Level::getBlockFromFile(){
     if(counter >= allChars.size()) return nullptr;
     char c = allChars.at(counter);
+    counter++;
+    return getBlockByChar(c);
+}
+
+Block* Level::getBlockByChar(char block) {
     Block *b;
-    switch (c) {
+    switch (block) {
         case 'I':
             b = new IBlock();
             break;
@@ -62,9 +67,8 @@ Block* Level::getBlockFromFile(){
             b = new ZBlock();
         case 'T':
             b = new TBlock();
-        }
-    counter++;
+    }
     return b;
 }
 
-virtual ~Level() {}
+Level::~Level() {}

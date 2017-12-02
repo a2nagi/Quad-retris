@@ -36,13 +36,13 @@ public:
     Grid();
     int getRows();
     int getColumns();
-    void initGrid(std::string level= "");
+    void initGrid(std::string fileName, int initialLevel, bool isTextOnly);
     void dropBlock();
     int getLevel();
     int getScore();
     int getHighScore();
     void moveCurrentBlockLeftRight(Direction d, int times);
-    void rotateBlock(Rotate r, int multiple);
+    void rotateBlock(int multiple);
     bool moveCurrentBlockDown(int times);
     void nextLevel(int counter);
     void levelDown(int counter);
@@ -51,6 +51,10 @@ public:
     void changeBlockToGridCoordinates();
     void showHint();
     TextDisplay* getTextDisplay();
+    void makeCurrentLevelFromFile(std::string fileName);
+    void makeCurrentLevelRandom();
+    void replaceCurrentBlock(char block);
+    void clearGrid();
     ~Grid();
 };
 #endif //GRID_H

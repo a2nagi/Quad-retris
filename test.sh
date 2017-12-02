@@ -1,3 +1,3 @@
 git add .
-git commit -m "Bug"
+git commit -m "Added remaning func"
 git push

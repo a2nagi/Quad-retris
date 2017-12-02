@@ -38,15 +38,29 @@ int Grid::getColumns() {
     return cols;
 }
 
-void Grid::initGrid(string level) {
-    if(level != "")
-    allLevels.emplace_back(new Level0(level));
+void Grid::makeCurrentLevelRandom() {
+    if(levelNumber < 3 ) return;
+    currentLevel->setRandomBlock(true);
+}
+
+void Grid::makeCurrentLevelFromFile(std::string fileName) {
+    if(levelNumber < 3) return;
+    currentLevel->readFile(fileName);
+    currentLevel->setRandomBlock(false);
+}
+
+void Grid::initGrid(string fileName, int initialLevel, bool isTextOnly) {
+    allLevels.emplace_back(new Level0());
     allLevels.emplace_back(new Level1());
     allLevels.emplace_back(new Level2());
     allLevels.emplace_back(new Level3());
     allLevels.emplace_back(new Level4());
+    allLevels.at(0)->readFile(fileName);
     theGrid.clear();
     td = new TextDisplay(this);
+    if(!isTextOnly) {
+        throw "To DO";
+    }
     for( int i = 0; i < rows; i++ ) {
         theGrid.emplace_back(vector<Cell>());
         for( int j = 0 ; j < cols ; j++ ) {
@@ -55,7 +69,7 @@ void Grid::initGrid(string level) {
         }
     }
     highScore = max(highScore, score);
-    currentLevel = allLevels.at(0);
+    currentLevel = allLevels.at(initialLevel);
     levelNumber = 0;
     score = 0;
     currentBlock = currentLevel->getNextBlock();
@@ -258,22 +272,22 @@ void Grid::moveCurrentBlockLeftRight(Direction d, int times) {
     }
 }
 
-void Grid::rotateBlock(Rotate r, int multiple) {
+void Grid::replaceCurrentBlock(char block) {
+    delete currentBlock;
+    currentBlock = currentLevel->getBlockByChar(block);
+}
+
+void Grid::rotateBlock(int multiple) {
     for(int i = 0 ; i < multiple; i++) {
         vector<Cell*> blocks = currentBlock->getCells();
         vector<Cell*> cellCopy = currentBlock->copyCells();
-        currentBlock->rotate(r);
+        currentBlock->rotate();
         for(Cell *c : blocks){
             int row = c->getInfo().row;
             int col = c->getInfo().col;
             if(col >= theGrid.at(0).size() || row >= theGrid.size()) {
-                if(r == Rotate::counterClockWise) {
-                    currentBlock->rotate(Rotate::clockWise);
-                }
-                else {
-                    currentBlock->rotate(Rotate::counterClockWise);
-                }
-                break;
+               currentBlock->setCells(cellCopy);
+                return;
             }
         }
         emptyCellsInGrid(cellCopy);
