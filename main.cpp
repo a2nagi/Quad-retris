@@ -6,7 +6,6 @@
 #include "controller/Controller.h"
 #include <sstream>
 #include <cstdlib>
-#include <process.h>
 
 using namespace std;
 
@@ -15,7 +14,7 @@ int main(int argc, char *argv[]) {
     // 1st Argument=argv[1];
     bool isOnlyText = false;
     int i = 1;
-    int seed = getpid();
+    int seed = time(nullptr);
     string fileName = "sequence.txt";
     int startLevel = 0;
     while (i < argc) {
