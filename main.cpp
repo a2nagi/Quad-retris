@@ -17,6 +17,5 @@ int main(int argc, char *argv[]) {
     TextDisplay *td = g.getTextDisplay();
     Controller c(&g, td);
     c.parseCommand();
-
 }
 

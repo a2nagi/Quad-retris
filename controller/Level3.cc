@@ -1,6 +1,10 @@
 #include "Level3.h"
 
 using namespace std;
+Level3::Level3(){
+    setLevel(3);
+}
+
 Block* Level3::getNextBlock(){
 
 	int x = rand()%9;

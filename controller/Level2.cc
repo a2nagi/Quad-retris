@@ -2,6 +2,10 @@
 
 using namespace std;
 
+Level2::Level2() {
+    setLevel(2);
+}
+
 Block* Level2::getNextBlock(){
 	Block *b;
 	int x = rand()%7;

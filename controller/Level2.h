@@ -17,6 +17,7 @@ class Block;
 class Level2:public Level{
 public:
 	Block* getNextBlock() override;
+	Level2();
 };
 
 #endif

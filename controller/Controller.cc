@@ -23,14 +23,14 @@ void Controller::parseCommand(){
     int multiple=1;
 
     //The commands in Regular Expression
-    regex left("lef");//Arjan
-    regex right("ri");//Arjan
-    regex down("do");//Arjan
-    regex clockwise("cl");//Arjan
-    regex counterclockwise("co");//Arjan
-    regex drop("dr");//Arjan or Harkamal
-// 	regex levelup(".levelu.*");//Sarthak
-// 	regex leveldown(".leveld.*");//Sarthak
+    regex left("lef");
+    regex right("ri");
+    regex down("do");
+    regex clockwise("cl");
+    regex counterclockwise("co");
+    regex drop("dr");
+	regex levelup("levelu");
+ 	regex leveldown("leveld");
 // 	regex norandom(".nor.*");//Sarthak
 // 	regex random(".ra.*");//Sarthak
 // 	regex sequence(".s.*");//Sarthak
@@ -74,27 +74,25 @@ void Controller::parseCommand(){
         }
 
         else if(regex_search(s,drop)){
-            g->dropBlock();
+            for(int i = 0; i < multiple; i++) {
+                g->dropBlock();
+            }
             cout<<*td;
         }
+
+        else if(regex_search(s,levelup)){
+			g->nextLevel(multiple);
+		}
+
+		else if(regex_search(s,leveldown)){
+            g->levelDown(multiple);
+		}
+
         else {
             throw "Command not supported";
         }
 
-//		else if(regex_match(s,levelup)){
-//			for(int i=0;i<multiple;i++){
-//				g->
-//			}
-//			currLevel=newLevel(currLevel); //Do we need to Refresh
-//		}
-//
-//		else if(regex_match(s,leveldown)){
-//
-//			for(int i=0;i<multiple;i++){
-//				currlevel--;
-//			}
-//			currlevel=newLevel(curLevel);//Do we need to Refresh
-//		}
+
 //
 //		else if(regex_match(s,norandom)){
 //			string filename;
