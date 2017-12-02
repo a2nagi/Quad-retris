@@ -105,12 +105,15 @@ void Controller::parseCommand(istream *inputStream){
         }
         else if(regex_search(s, *block)) {
             g->replaceCurrentBlock(s.at(0));
+            cout << *td << endl;
         }
         else if(regex_search(s, *restart)) {
             g->clearGrid();
+            cout << *td << endl;
         }
         else if(regex_search(s, *hint)) {
             g->showHint();
+            cout << *td << endl;
         }
         else {
             cout << "Invalid command! Please try again" << endl;

@@ -44,7 +44,14 @@ void Grid::makeCurrentLevelRandom() {
 }
 
 void Grid::clearGrid() {
-
+    score = 0;
+    for(unsigned int i = 0; i < theGrid.at(i).size(); i++) {
+        for(unsigned int j =0; j < theGrid.at(i).size(); i++) {
+            Info f = theGrid.at(i).at(j).getInfo();
+            f.blockType = ' ';
+            theGrid.at(i).at(j).setInfo(f);
+        }
+    }
 }
 
 void Grid::makeCurrentLevelFromFile(std::string fileName) {
@@ -60,7 +67,6 @@ void Grid::initGrid(string fileName, int initialLevel, bool isTextOnly) {
     allLevels.emplace_back(new Level3());
     allLevels.emplace_back(new Level4());
     allLevels.at(0)->readFile(fileName);
-    theGrid.clear();
     td = new TextDisplay(this);
     if(!isTextOnly) {
         throw "To DO";
@@ -74,7 +80,7 @@ void Grid::initGrid(string fileName, int initialLevel, bool isTextOnly) {
     }
     highScore = max(highScore, score);
     currentLevel = allLevels.at(initialLevel);
-    levelNumber = 0;
+    levelNumber = initialLevel;
     score = 0;
     currentBlock = currentLevel->getNextBlock();
     changeBlockToGridCoordinates();
@@ -138,7 +144,8 @@ void Grid::showHint() {
 void Grid::eraseRow(int row) {
     if(row == 15) return;
     for( int i = 0; i < cols; i++ ) {
-        theGrid.at(row).at(i) = theGrid.at(row+1).at(i);
+        Info f = theGrid.at(row+1).at(i).getInfo();
+        theGrid.at(row).at(i).setPiece(f.blockType);
     }
     eraseRow(row+1);
 }
@@ -277,8 +284,11 @@ void Grid::moveCurrentBlockLeftRight(Direction d, int times) {
 }
 
 void Grid::replaceCurrentBlock(char block) {
+    emptyCellsInGrid(currentBlock->getCells());
     delete currentBlock;
     currentBlock = currentLevel->getBlockByChar(block);
+    changeBlockToGridCoordinates();
+    copyBlockIntoGrid(currentBlock);
 }
 
 void Grid::rotateBlock(int multiple) {
