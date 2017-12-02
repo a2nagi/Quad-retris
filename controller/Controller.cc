@@ -31,8 +31,8 @@ void Controller::parseCommand(){
     regex drop("dr");
 	regex levelup("levelu");
  	regex leveldown("leveld");
-// 	regex norandom(".nor.*");//Sarthak
-// 	regex random(".ra.*");//Sarthak
+ 	regex norandom("nor");
+ 	regex random("ra");
 // 	regex sequence(".s.*");//Sarthak
 // 	regex blocks(".[IJLOSZT]");//Sarthak
 // 	regex restart(".re.*");//Sarthak
@@ -88,13 +88,12 @@ void Controller::parseCommand(){
             g->levelDown(multiple);
 		}
 
-        else {
-            throw "Command not supported";
+        else if(regex_search(s,norandom)){
+            istringstream textStream{s};
+            string fileName;
+            textStream >> fileName;
+            textStream >> fileName;
         }
-
-
-//
-//		else if(regex_match(s,norandom)){
 //			string filename;
 //			ifstream f;
 //			f.open(filename);
@@ -108,6 +107,13 @@ void Controller::parseCommand(){
 //		else if(regex_match(s,random)){
 //
 //		}
+        else {
+            throw "Command not supported";
+        }
+
+
+//
+//
 //
 //		else if(regex_match(s,sequence)){//Applicable to level
 //			string filename;

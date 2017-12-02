@@ -6,9 +6,11 @@ Level4::Level4() {
     setLevel(4);
 }
 
-Block* Level4::getNextBlock(){
+Block* Level4::getNextBlock() {
+    if(this->getIsRandom()) {
+        return this->getBlockFromFile();
+    }
 	int x = rand()%9;
-	
 	Block *b;
 
 	if(x==1){

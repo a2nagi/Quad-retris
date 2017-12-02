@@ -6,7 +6,9 @@ Level3::Level3(){
 }
 
 Block* Level3::getNextBlock(){
-
+    if(getIsRandom()) {
+        return this->getBlockFromFile();
+    }
 	int x = rand()%9;
 	Block *b;
 
