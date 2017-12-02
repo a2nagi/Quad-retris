@@ -15,7 +15,8 @@ public:
 
     // when they've changed state
     Info getInfo() const override;
-    bool setInfo(Info &i);
+    void setInfo(Info &i);
+    virtual ~Cell();
 };
 
 #endif //CELL_H

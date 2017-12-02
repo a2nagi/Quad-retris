@@ -11,4 +11,5 @@ set(SOURCE_FILES main.cpp controller/Block.cpp
         controller/ZBlock.cpp view/TextDisplay.cc model/Cell.cc model/Grid.cc model/Subject.cc controller/Level.cc
         #view/graphicsdisplay.cc view/window.cc
         )
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 add_executable(CS246_Project ${SOURCE_FILES})

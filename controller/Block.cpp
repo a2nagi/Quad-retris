@@ -67,13 +67,13 @@ int Block::getHeight() {
     CellInfos.emplace_back(c4->getInfo());
 
     vector<int> calcHeight;
-    for (int i = 0; i < CellInfos.size(); i++) {
+    for (unsigned int i = 0; i < CellInfos.size(); i++) {
         calcHeight.emplace_back(CellInfos.at(i).row);
     }
 
     int maxHeight=calcHeight.at(0);
     int minHeight=calcHeight.at(0);
-    for (int j = 0; j < calcHeight.size(); j++)
+    for (unsigned int j = 0; j < calcHeight.size(); j++)
     {
         if (calcHeight.at(j) > maxHeight)
         {
@@ -101,14 +101,14 @@ int Block::getWidth()
     CellInfos.emplace_back(c4->getInfo());
 
     vector<int> calcWidth(4);
-    for (int i = 0; i < CellInfos.size(); i++) {
+    for (unsigned int i = 0; i < CellInfos.size(); i++) {
         calcWidth.emplace_back(CellInfos.at(i).col);
     }
 
 
     int maxWidth=calcWidth.at(0);
     int minWidth=calcWidth.at(0);
-    for (int j = 0; j < calcWidth.size(); j++)
+    for (unsigned int j = 0; j < calcWidth.size(); j++)
     {
         if (calcWidth.at(j) > maxWidth)
         {
@@ -182,7 +182,7 @@ void Block::rotate()
     setRotationHeight(height);
 
 
-    for (int i = 0; i < CellInfos.size(); i++) {
+    for (unsigned int i = 0; i < CellInfos.size(); i++) {
 
         int rowMin=this->getMinRows().at(0)->getInfo().row;
         int curX = CellInfos.at(i).row - rowMin;
@@ -212,7 +212,7 @@ vector<Cell *> Block::getMinRows() {
     vector<Cell *> allCells = this->getCells();
     Cell *minCell = allCells.at(0);
     vector<Cell *> minCells;
-    for(int i =1; i < allCells.size(); i++){
+    for(unsigned int i =1; i < allCells.size(); i++){
         if(minCell->getInfo().row > allCells.at(i)->getInfo().row) {
             minCell = allCells.at(i);
         }

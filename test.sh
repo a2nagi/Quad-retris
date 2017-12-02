@@ -1,3 +1,3 @@
 git add .
-git commit -m "Added remaning func"
+git commit -m "Fixed warnings"
 git push

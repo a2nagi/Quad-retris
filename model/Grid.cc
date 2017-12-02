@@ -106,7 +106,7 @@ void Grid::changeBlockToGridCoordinates() {
 }
 
 Grid::~Grid() {
-    for(int i = 0; i < allLevels.size(); i++) {
+    for(unsigned int i = 0; i < allLevels.size(); i++) {
         delete allLevels.at(i);
     }
 }
@@ -148,7 +148,7 @@ void Grid::dropBlock() {
 }
 
 void Grid::emptyCellsInGrid(vector<Cell *> cells) {
-    for(int i = 0; i < cells.size(); i++) {
+    for(unsigned int i = 0; i < cells.size(); i++) {
         int row = cells.at(i)->getInfo().row;
         int col = cells.at(i)->getInfo().col;
         theGrid.at(row).at(col).setPiece(' ');
@@ -259,8 +259,8 @@ void Grid::moveCurrentBlockLeftRight(Direction d, int times) {
         vector<Cell *> cellCopy = currentBlock->copyCells();
         currentBlock->move(d);
         for(Cell *c : blocks){
-            int row = c->getInfo().row;
-            int col = c->getInfo().col;
+            unsigned int row = c->getInfo().row;
+            unsigned int col = c->getInfo().col;
             if(col >= theGrid.at(0).size() || row >= theGrid.size()) {
                 if(d == Direction::right) {
                     currentBlock->move(Direction::left);
@@ -287,8 +287,8 @@ void Grid::rotateBlock(int multiple) {
         vector<Cell*> cellCopy = currentBlock->copyCells();
         currentBlock->rotate();
         for(Cell *c : blocks){
-            int row = c->getInfo().row;
-            int col = c->getInfo().col;
+            unsigned int row = c->getInfo().row;
+            unsigned int col = c->getInfo().col;
             if(col >= theGrid.at(0).size() || row >= theGrid.size()) {
                currentBlock->setCells(cellCopy);
                 return;

@@ -18,24 +18,24 @@ int main(int argc, char *argv[]) {
     string fileName = "sequence.txt";
     int startLevel = 0;
     while (i < argc) {
-        if(argv[i] == "-text") {
+        if(strcmp(argv[i], "-text") == 0) {
             isOnlyText = true;
         }
-        else if (argv[i] == "-seed") {
+        else if (strcmp(argv[i], "-seed") == 0) {
             i++;
             if(i == argc) {
                 exit(1);
             }
             seed = stoi(argv[i]);
         }
-        else if(argv[i] == "-scriptfile"){
+        else if( strcmp(argv[i], "-scriptfile") == 0 ){
             i++;
             if(i == argc) {
                 exit(1);
             }
             fileName = argv[i];
         }
-        else if(argv[i] == "-startlevel") {
+        else if( strcmp(argv[i],"-startlevel") == 0 ) {
             i++;
             if(i == argc) {
                 exit(1);

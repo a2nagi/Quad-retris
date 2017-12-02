@@ -10,7 +10,7 @@ void Cell::setPiece(char blockType) {
     notifyObservers();
 }
 
-bool Cell::setInfo(Info &i) {
+void Cell::setInfo(Info &i) {
     r = i.row;
     c = i.col;
     blockType = i.blockType;
@@ -20,3 +20,5 @@ bool Cell::setInfo(Info &i) {
 Info Cell::getInfo() const {
     return Info{r, c, blockType};
 }
+
+Cell::~Cell() {}

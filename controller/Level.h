@@ -9,7 +9,7 @@ class Block;
 
 class Level {
 private:
-    int counter;
+    unsigned int counter;
     int level;
     std::vector<char> allChars;
     bool isRandom;
