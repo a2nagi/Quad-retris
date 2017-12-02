@@ -1,4 +1,12 @@
 #include "Level1.h"
+#include "Block.h"
+#include "IBlock.h"
+#include "SBlock.h"
+#include "ZBlock.h"
+#include "OBlock.h"
+#include "JBlock.h"
+#include "TBlock.h"
+#include "LBlock.h"
 
 using namespace std;
 

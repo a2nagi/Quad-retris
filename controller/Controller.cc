@@ -1,6 +1,7 @@
 #include <iostream>
 #include <regex>
 #include <fstream>
+#include <sstream>
 #include "Block.h"
 #include "../model/Grid.h"
 #include "Controller.h"
