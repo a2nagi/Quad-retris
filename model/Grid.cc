@@ -329,6 +329,7 @@ bool Grid::copyBlockIntoGrid(Block *block) {
     for(Cell *c: blocks) {
         int row = c->getInfo().row;
         int col = c->getInfo().col;
+        char v1 = theGrid.at(row).at(col).getInfo().blockType;
         if(theGrid.at(row).at(col).getInfo().blockType != ' ' ) {
             // cannot move block
             return false;
