@@ -273,6 +273,8 @@ bool Grid::moveCurrentBlockDown(int times) {
                     throw gameOver();
                 }
             }
+            currentBlock->setCells(cellCopy);
+            copyBlockIntoGrid(currentBlock);
             moveToNextBlock();
             break;
         }
