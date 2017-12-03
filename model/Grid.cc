@@ -97,7 +97,6 @@ void Grid::moveToNextBlock() {
         throw gameOver();
     }
     changeBlockToGridCoordinates();
-    copyBlockIntoGrid(currentBlock);
     nextBlock = currentLevel->getNextBlock();
 }
 
@@ -190,9 +189,8 @@ bool Grid::moveCurrentBlockDown(int times) {
     bool canMove = false;
     for(int i = 0; i < times; i++) {
         vector<Cell*> blocks = currentBlock->getCells();
-        vector<Cell *> cellCopy = currentBlock->copyCells();
+        emptyCellsInGrid(blocks);
         currentBlock->move(Direction::down);
-        emptyCellsInGrid(cellCopy);
         bool canMove = copyBlockIntoGrid(currentBlock);
         bool isRowErased = false;
         int timesErased = 0;
@@ -273,7 +271,7 @@ bool Grid::moveCurrentBlockDown(int times) {
                     throw gameOver();
                 }
             }
-            currentBlock->setCells(cellCopy);
+            currentBlock->move(Direction::up);
             copyBlockIntoGrid(currentBlock);
             moveToNextBlock();
             break;
@@ -345,10 +343,17 @@ bool Grid::copyBlockIntoGrid(Block *block) {
     return true;
 }
 
+void Grid::addObserverToCopy(std::vector<Cell *> cells) {
+    for(Cell *c: cells) {
+        c->attach(td);
+    }
+}
+
 void Grid::moveCurrentBlockLeftRight(Direction d, int times) {
     for(int i = 0 ; i < times; i++) {
         vector<Cell*> blocks = currentBlock->getCells();
         vector<Cell *> cellCopy = currentBlock->copyCells();
+        addObserverToCopy(cellCopy);
         currentBlock->move(d);
         for(Cell *c : blocks){
             unsigned int row = c->getInfo().row;
@@ -383,6 +388,7 @@ void Grid::rotateBlock(int multiple) {
     for(int i = 0 ; i < multiple; i++) {
         vector<Cell*> blocks = currentBlock->getCells();
         vector<Cell*> cellCopy = currentBlock->copyCells();
+        addObserverToCopy(cellCopy);
         currentBlock->rotate();
         for(Cell *c : blocks){
             unsigned int row = c->getInfo().row;

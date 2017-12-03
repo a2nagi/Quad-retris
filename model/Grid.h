@@ -32,6 +32,7 @@ private:
     void emptyCellsInGrid(std::vector<Cell *> cells);
     void moveToNextBlock();
     void dropHeavyBlock();
+    void addObserverToCopy(std::vector<Cell *> cells);
     TextDisplay *td;
     int heavyCounter;
 public:

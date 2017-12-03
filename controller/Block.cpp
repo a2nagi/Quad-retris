@@ -12,6 +12,10 @@ vector<Cell *> Block::copyCells() {
     allCells.emplace_back(new Cell(this->c2->getInfo().row, this->c2->getInfo().col));
     allCells.emplace_back(new Cell(this->c3->getInfo().row, this->c3->getInfo().col));
     allCells.emplace_back(new Cell(this->c4->getInfo().row, this->c4->getInfo().col));
+    allCells.at(0)->setPiece(this->c1->getInfo().blockType);
+    allCells.at(1)->setPiece(this->c2->getInfo().blockType);
+    allCells.at(2)->setPiece(this->c3->getInfo().blockType);
+    allCells.at(3)->setPiece(this->c4->getInfo().blockType);
     return allCells;
 }
 
@@ -96,7 +100,12 @@ void Block::move(Direction d){
         nextToRight.row-=1;
         rightMost.row-=1;
     }
-
+    else if(d==Direction::up) {
+        leftMost.row+=1;
+        nextToLeft.row+=1;
+        nextToRight.row+=1;
+        rightMost.row+=1;
+    }
     c1->setInfo(leftMost);
     c2->setInfo(nextToLeft);
     c3->setInfo(nextToRight);

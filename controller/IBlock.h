@@ -8,6 +8,6 @@ public:
     IBlock(int level);
     Color getColor()override;
     void setRotationHeight(int height)override;
-    std::string toString() override ;
+    std::string toString() override;
 };
 #endif //IBLOCK_H
