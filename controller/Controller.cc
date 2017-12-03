@@ -53,8 +53,16 @@ void Controller::parseCommand(istream *inputStream){
         }
 
         else if(regex_search(s,*down)){
-            g->moveCurrentBlockDown(multiple);
-            cout<<*td;
+            try {
+                g->moveCurrentBlockDown(multiple);
+                cout<<*td;
+            }
+            catch (gameOver) {
+                cout << "Game Over!! Press any key to quit" << endl;
+                getline(cin, s);
+                exit(0);
+            }
+
         }
 
         else if(regex_search(s,*clockwise)){
@@ -70,10 +78,17 @@ void Controller::parseCommand(istream *inputStream){
         }
 
         else if(regex_search(s,*drop)){
-            for(int i = 0; i < multiple; i++) {
-                g->dropBlock();
+            try {
+                for(int i = 0; i < multiple; i++) {
+                    g->dropBlock();
+                }
+                cout<<*td;
+            }catch (gameOver) {
+                cout << "Game Over!! Press any key to quit" << endl;
+                getline(cin, s);
+                exit(0);
             }
-            cout<<*td;
+
         }
 
         else if(regex_search(s,*levelup)){

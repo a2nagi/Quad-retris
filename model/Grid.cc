@@ -47,8 +47,9 @@ void Grid::makeCurrentLevelRandom() {
 
 void Grid::clearGrid() {
     score = 0;
-    for(unsigned int i = 0; i < theGrid.at(i).size(); i++) {
-        for(unsigned int j =0; j < theGrid.at(i).size(); i++) {
+    heavyCounter = 0;
+    for(unsigned int i = 0; i < theGrid.size(); i++) {
+        for(unsigned int j =0; j < theGrid.at(0).size(); j++) {
             Info f = theGrid.at(i).at(j).getInfo();
             f.blockType = ' ';
             theGrid.at(i).at(j).setInfo(f);
@@ -92,6 +93,9 @@ void Grid::initGrid(string fileName, int initialLevel, bool isTextOnly) {
 
 void Grid::moveToNextBlock() {
     currentBlock = nextBlock;
+    if(currentBlock == nullptr) {
+        throw gameOver();
+    }
     changeBlockToGridCoordinates();
     copyBlockIntoGrid(currentBlock);
     nextBlock = currentLevel->getNextBlock();
@@ -264,6 +268,12 @@ bool Grid::moveCurrentBlockDown(int times) {
             }
         }
         else {
+            for(Cell *c: currentBlock->getCells()) {
+                if(c->getInfo().row > 13) {
+                    throw gameOver();
+                }
+            }
+            moveToNextBlock();
             break;
         }
     }
@@ -319,7 +329,7 @@ bool Grid::copyBlockIntoGrid(Block *block) {
     for(Cell *c: blocks) {
         int row = c->getInfo().row;
         int col = c->getInfo().col;
-        if(theGrid.at(row).at(col).getInfo().blockType != ' ') {
+        if(theGrid.at(row).at(col).getInfo().blockType != ' ' ) {
             // cannot move block
             return false;
         }
@@ -363,7 +373,7 @@ void Grid::replaceCurrentBlock(char block) {
     delete currentBlock;
     currentBlock = currentLevel->getBlockByChar(block);
     changeBlockToGridCoordinates();
-    copyBlockIntoGrid(currentBlock);
+   // copyBlockIntoGrid(currentBlock);
 }
 
 void Grid::rotateBlock(int multiple) {
