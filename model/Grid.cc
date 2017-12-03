@@ -71,14 +71,13 @@ void Grid::initGrid(string fileName, int initialLevel, bool isTextOnly) {
     allLevels.emplace_back(new Level4());
     allLevels.at(0)->readFile(fileName);
     td = new TextDisplay(this);
-    if(!isTextOnly) {
-        throw "To DO";
-    }
+    gd = new GraphicsDisplay(500, 800, this);
     for( int i = 0; i < rows; i++ ) {
         theGrid.emplace_back(vector<Cell>());
         for( int j = 0 ; j < cols ; j++ ) {
             theGrid.at(i).emplace_back(Cell(i, j));
             theGrid.at(i).at(j).attach(td);
+            theGrid.at(i).at(j).attach(gd);
         }
     }
     highScore = max(highScore, score);

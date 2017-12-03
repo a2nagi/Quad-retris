@@ -1,20 +1,15 @@
 #ifndef GRAPHICSDISPLAY_H
 #define GRAPHICSDISPLAY_H
 
-#include <iostream>
-#include <vector>
-#include <string>
 #include "../model/Observer.h"
-#include "../model/State.h"
-#include "Window.h"
-#include "../model/Info.h"
-#include "../model/Grid.h"
+#include "window.h"
 
+class Grid;
 class GraphicsDisplay: public Observer{
-  Xwindow xw(500,800);
   Grid* g;
+  Xwindow xw;
  public:
-  GraphicsDisplay(Grid *g);
+  GraphicsDisplay(int gridSize, int winSize, Grid *g);
   void notify(Subject &whoNotified) override;
 };
 #endif

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.6)
 project(CS246_Project)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -9,7 +9,11 @@ set(SOURCE_FILES main.cpp controller/Block.cpp
         controller/Level4.cc controller/OBlock.cpp controller/SBlock.cpp controller/TBlock.cpp
         controller/Level.h model/Info.h model/Observer.h model/State.h
         controller/ZBlock.cpp view/TextDisplay.cc model/Cell.cc model/Grid.cc model/Subject.cc controller/Level.cc
-        #view/graphicsdisplay.cc view/window.cc
+        view/graphicsdisplay.cc view/window.cc
         )
+
+set(LIBS "/usr/bin/X11")
+find_library(XLIBS X11)
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 add_executable(CS246_Project ${SOURCE_FILES})
+target_link_libraries(CS246_Project ${XLIBS})

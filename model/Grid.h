@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "../controller/Level.h"
+#include "../view/graphicsdisplay.h"
 #include "State.h"
 #include <string>
 
@@ -34,6 +35,7 @@ private:
     void dropHeavyBlock();
     void addObserverToCopy(std::vector<Cell *> cells);
     TextDisplay *td;
+    GraphicsDisplay *gd;
     int heavyCounter;
 public:
     Grid();

@@ -2,9 +2,10 @@
 #include "graphicsdisplay.h"
 #include "../model/Info.h"
 #include "../model/Subject.h"
+
 using namespace std;
 
-GraphicsDisplay::GraphicsDisplay(Grid *g):g{g} {
+GraphicsDisplay::GraphicsDisplay(int gridSize, int winSize, Grid *g): g{g}, xw{gridSize, winSize}  {
 
   xw.drawString(200, 20, "Project Quadris", Xwindow::Blue);
   xw.drawString(100, 40, "Level:", Xwindow::Blue);
@@ -16,7 +17,7 @@ GraphicsDisplay::GraphicsDisplay(Grid *g):g{g} {
 void GraphicsDisplay::notify(Subject &whoNotified) {
   Info I = whoNotified.getInfo();
   int cellColSize = 500 / 11;
-  int cellRowSize = 500 / 18;a
+  int cellRowSize = 500 / 18;
 
   switch(I.blockType) {
    case 'I':

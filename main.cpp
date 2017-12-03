@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
     //Set seed
     srand(seed);
     Grid g;
-    isOnlyText = true;
+    isOnlyText = false;
     g.initGrid(fileName, startLevel, isOnlyText);
     TextDisplay *td = g.getTextDisplay();
     Controller c(&g, td);
