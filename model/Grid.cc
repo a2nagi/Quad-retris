@@ -29,6 +29,7 @@ Grid::Grid() {
     cols = 11;
     highScore = 0;
     score = 0;
+    heavyCounter = 0;
 }
 
 int Grid::getRows() {
@@ -202,6 +203,7 @@ bool Grid::moveCurrentBlockDown(int times) {
                     placedBlocks.emplace_back(currentBlock);
                     vector<int> emptyArray;
                     timesErased++;
+                    heavyCounter = 0;
                     for(int i =0; i < placedBlocks.size(); i++) {
                         for(Cell *c1: placedBlocks.at(i)->getCells()) {
                             if( c1->getInfo().row == c->getInfo().row) {
@@ -240,6 +242,12 @@ bool Grid::moveCurrentBlockDown(int times) {
                 highScore = max(highScore, score);
                 if(!isRowErased) {
                     placedBlocks.emplace_back(currentBlock);
+                    if(this->levelNumber == 4 ) {
+                        heavyCounter++;
+                        if(heavyCounter%5 == 0) {
+                            dropHeavyBlock();
+                        }
+                    }
                 }
                 else {
                     // remaing placed block each cell comes one row down.
@@ -262,6 +270,16 @@ bool Grid::moveCurrentBlockDown(int times) {
 
     return canMove;
 
+}
+
+void Grid::dropHeavyBlock() {
+    int middle = cols/2;
+    for(int i = 0; i< rows; i++) {
+        if(theGrid.at(i).at(middle).getInfo().blockType == ' ') {
+            theGrid.at(i).at(middle).setPiece('*');
+            return;
+        }
+    }
 }
 
 TextDisplay* Grid::getTextDisplay() {
@@ -335,6 +353,9 @@ void Grid::moveCurrentBlockLeftRight(Direction d, int times) {
         emptyCellsInGrid(cellCopy);
         copyBlockIntoGrid(currentBlock);
     }
+    if(this->levelNumber >= 3) {
+        moveCurrentBlockDown(1);
+    }
 }
 
 void Grid::replaceCurrentBlock(char block) {
@@ -360,6 +381,9 @@ void Grid::rotateBlock(int multiple) {
         }
         emptyCellsInGrid(cellCopy);
         copyBlockIntoGrid(currentBlock);
+    }
+    if(this->levelNumber >= 3) {
+        moveCurrentBlockDown(1);
     }
 }
 

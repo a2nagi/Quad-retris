@@ -12,7 +12,7 @@ using namespace std;
 
 Level::Level() {
     counter = 0;
-    isRandom = false;
+    isRandom = true;
 }
 
 void Level::setRandomBlock(bool isRandom) {

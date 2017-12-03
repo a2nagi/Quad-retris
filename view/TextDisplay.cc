@@ -52,6 +52,7 @@ ostream &operator<<(std::ostream &out, const TextDisplay &td)
 	if(td.theGrid->getNextBlock() != nullptr) {
 		out << td.theGrid->getNextBlock()->toString() << endl;
 	}
+
 	//out<<NEXT BLOCK;
   return out;
 }

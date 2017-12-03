@@ -31,7 +31,9 @@ private:
     void eraseRow(int row);
     void emptyCellsInGrid(std::vector<Cell *> cells);
     void moveToNextBlock();
+    void dropHeavyBlock();
     TextDisplay *td;
+    int heavyCounter;
 public:
     Grid();
     int getRows();
