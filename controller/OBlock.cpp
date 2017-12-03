@@ -5,7 +5,7 @@ Color OBlock::getColor() {
     return Color::TEAL;
 }
 
-OBlock::OBlock() {
+OBlock::OBlock(int level): Block(level) {
     c1 = new Cell(0, 0);
     c1->setPiece('O');
 
@@ -22,11 +22,6 @@ OBlock::OBlock() {
 void OBlock::setRotationHeight(int height)
 {
     updatedHeight = 1;
-
-}
-
-void OBlock::setRotationWidth(int width) {
-    updatedWidth=1;
 
 }
 

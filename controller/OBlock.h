@@ -3,10 +3,9 @@
 #include "Block.h"
 class OBlock : public Block {
 public:
-    OBlock();
+    OBlock(int level);
     Color getColor()override;
     void setRotationHeight(int height)override;
-    void setRotationWidth(int width)override;
     std::string toString() override ;
 };
 #endif //OBLOCK_H

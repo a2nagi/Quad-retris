@@ -5,10 +5,9 @@
 class IBlock : public Block {
 
 public:
-    IBlock();
+    IBlock(int level);
     Color getColor()override;
     void setRotationHeight(int height)override;
-    void setRotationWidth(int width)override;
     std::string toString() override ;
 };
 #endif //IBLOCK_H

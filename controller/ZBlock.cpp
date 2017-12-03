@@ -5,7 +5,7 @@ Color ZBlock::getColor() {
     return Color::PEACH;
 }
 
-ZBlock::ZBlock() {
+ZBlock::ZBlock(int level): Block(level) {
 
     c1 = new Cell(1, 0);
     c1->setPiece('Z');
@@ -29,17 +29,6 @@ void ZBlock::setRotationHeight(int height) {
     else
     {
         updatedHeight = 1;
-    }
-}
-
-void ZBlock::setRotationWidth(int width) {
-    if (width == 1)
-    {
-        updatedWidth = 2;
-    }
-    else
-    {
-        updatedWidth = 1;
     }
 }
 

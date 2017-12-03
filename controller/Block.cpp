@@ -4,7 +4,8 @@
 
 using namespace std;
 
-Block::Block() {}
+Block::Block(int level): level(level) {}
+
 vector<Cell *> Block::copyCells() {
     vector<Cell *> allCells;
     allCells.emplace_back(new Cell(this->c1->getInfo().row, this->c1->getInfo().col));
@@ -188,6 +189,15 @@ int Block::getMinCols() {
         }
     }
     return minWidth;
+}
+
+bool Block::isBlockEmpty() {
+    return c1->getInfo().blockType == ' ' && c2->getInfo().blockType == ' '
+           && c3->getInfo().blockType == ' ' && c4->getInfo().blockType == ' ';
+}
+
+int Block::getLevel() {
+    return level;
 }
 
 Block::~Block()

@@ -51,22 +51,22 @@ Block* Level::getBlockByChar(char block) {
     Block *b;
     switch (block) {
         case 'I':
-            b = new IBlock();
+            b = new IBlock(getLevel());
             break;
         case 'J':
-            b = new JBlock();
+            b = new JBlock(getLevel());
             break;
         case 'L':
-            b = new LBlock();
+            b = new LBlock(getLevel());
             break;
         case 'O':
-            b = new OBlock();
+            b = new OBlock(getLevel());
         case 'S':
-            b = new SBlock();
+            b = new SBlock(getLevel());
         case 'Z':
-            b = new ZBlock();
+            b = new ZBlock(getLevel());
         case 'T':
-            b = new TBlock();
+            b = new TBlock(getLevel());
     }
     return b;
 }

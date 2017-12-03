@@ -5,7 +5,7 @@ Color SBlock::getColor() {
     return Color::VIOLET;
 }
 
-SBlock::SBlock()
+SBlock::SBlock(int level): Block(level)
 {
     c1 = new Cell(0, 0);
     c1->setPiece('S');
@@ -29,17 +29,6 @@ void SBlock::setRotationHeight(int height) {
     else
     {
         updatedHeight = 1;
-    }
-}
-
-void SBlock::setRotationWidth(int width) {
-    if (width == 1)
-    {
-        updatedWidth = 2;
-    }
-    else
-    {
-        updatedWidth = 1;
     }
 }
 

@@ -24,8 +24,8 @@ private:
     int rows;
     int highScore;
     int levelNumber;
+    bool isHintVisible;
     bool isCurrentRowFull(int row);
-    //void getNextBlock();
     void updateLevel(int requestedLevel);
     bool copyBlockIntoGrid(Block * block);
     void eraseRow(int row);
@@ -55,6 +55,7 @@ public:
     void makeCurrentLevelRandom();
     void replaceCurrentBlock(char block);
     void clearGrid();
+    std::vector<Block * > placedBlocks;
     ~Grid();
 };
 #endif //GRID_H

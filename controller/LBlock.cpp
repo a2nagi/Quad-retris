@@ -5,7 +5,7 @@ Color LBlock::getColor() {
     return Color::BLUE;
 }
 
-LBlock::LBlock() {
+LBlock::LBlock(int level): Block(level) {
     c1 = new Cell(0, 0);
     c1->setPiece('L');
 
@@ -27,17 +27,6 @@ void LBlock::setRotationHeight(int height) {
     else
     {
         updatedHeight = 1;
-    }
-}
-
-void LBlock::setRotationWidth(int width) {
-    if (width == 1)
-    {
-        updatedWidth = 2;
-    }
-    else
-    {
-        updatedWidth = 1;
     }
 }
 

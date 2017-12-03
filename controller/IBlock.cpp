@@ -8,7 +8,7 @@ Color IBlock::getColor() {
    return Color::RED;
 }
 
-IBlock::IBlock() {
+IBlock::IBlock(int level): Block(level) {
 
     c1 = new Cell(0, 0);
     c1->setPiece('I');
@@ -32,18 +32,6 @@ void IBlock::setRotationHeight(int height)
     else
     {
         updatedHeight = 0;
-    }
-
-}
-
-void IBlock::setRotationWidth(int width) {
-    if (width == 0)
-    {
-        updatedWidth = 3;
-    }
-    else
-    {
-        updatedWidth = 0;
     }
 
 }

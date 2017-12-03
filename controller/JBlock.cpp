@@ -8,7 +8,7 @@ Color JBlock::getColor() {
 }
 
 
-JBlock::JBlock() {
+JBlock::JBlock(int level): Block(level) {
     c1 = new Cell(0, 0);
     c1->setPiece('J');
 
@@ -31,17 +31,6 @@ void JBlock::setRotationHeight(int height) {
     else
     {
         updatedHeight = 1;
-    }
-}
-
-void JBlock::setRotationWidth(int width) {
-    if (width == 1)
-    {
-        updatedWidth = 2;
-    }
-    else
-    {
-        updatedWidth = 1;
     }
 }
 

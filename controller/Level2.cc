@@ -19,25 +19,25 @@ Block* Level2::getNextBlock(){
     int x = rand()%7;
 	switch(x){
 		case 0:
-			b = new IBlock();
+			b = new IBlock(getLevel());
 			break;
 		case 1:
-			b = new LBlock();
+			b = new LBlock(getLevel());
 			break;
 		case 2:
-			b = new OBlock();
+			b = new OBlock(getLevel());
 			break;
 		case 3:
-			b = new TBlock();
+			b = new TBlock(getLevel());
 			break;
 		case 4:
-			b = new JBlock();
+			b = new JBlock(getLevel());
 			break;
 		case 5:
-			b = new SBlock();
+			b = new SBlock(getLevel());
 			break;
 		case 6:
-			b = new ZBlock();
+			b = new ZBlock(getLevel());
 			break;
 	}
 	return b;

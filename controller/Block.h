@@ -8,14 +8,13 @@ class Cell;
 enum Color {RED, BLACK, PEACH, SKIN, TEAL, VIOLET, BLUE};
 
 class Block {
+private:
+    const int level;
 protected:
     int updatedHeight;
-    int updatedWidth;
     Cell *c1, *c2, *c3, *c4;
 public:
-    Block();
-//    Block(const Block& other);
-//    Block& operator=(const Block &other);
+    Block(int level);
     void move(Direction d);
     void rotate();
     std::vector<Cell *> getCells() {
@@ -25,13 +24,13 @@ public:
     std::vector<Cell *> copyCells();
     void setCells(std::vector<Cell*> allCells);
     virtual Color getColor()=0;
-    virtual void setRotationWidth(int width)=0;
     virtual void setRotationHeight(int height)=0;
     virtual std::string toString()=0;
     int getHeight();
-    int getWidth();
     std::vector<Cell *> getMinRows();
     int getMinCols();
+    bool isBlockEmpty();
+    int getLevel();
     virtual ~Block();
 };
 #endif

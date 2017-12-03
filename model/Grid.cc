@@ -9,6 +9,7 @@
 #include "../controller/Level3.h"
 #include "../controller/Level4.h"
 #include "../view/TextDisplay.h"
+#include "../controller/JBlock.h"
 
 using namespace std;
 
@@ -138,7 +139,25 @@ void Grid::updateLevel(int requestedLevel) {
 }
 
 void Grid::showHint() {
-    //ToDo
+//    if(isHintVisible)
+//        return;
+//    isHintVisible = true;
+//    int  minRowSize = currentBlock->getMinRows().size();
+//    unsigned int i = rows;
+//    for(; i >=0; i --) {
+//        for(unsigned int j = cols; j-minRowSize>= 0; j--) {
+//            for(unsigned int k = 0; k < minRowSize; k++) {
+//                if( theGrid.at(i).at(k).getInfo().blockType == ' ' )
+//            }
+//        }
+//    }
+//    // get the first
+//    for(unsigned int i = rows-3; i >= 0; i--) {
+//        int free = 0;
+//        for(unsigned int j = cols; j >=0; i--) {
+//
+//        }
+//    }
 }
 
 void Grid::eraseRow(int row) {
@@ -170,17 +189,39 @@ bool Grid::moveCurrentBlockDown(int times) {
         currentBlock->move(Direction::down);
         emptyCellsInGrid(cellCopy);
         bool canMove = copyBlockIntoGrid(currentBlock);
+        bool isRowErased = false;
+        int timesErased = 0;
         if(canMove) {
-            vector<Cell *> cells = currentBlock->getCells();
-            for(Cell *c: cells) {
-                if(c->getInfo().row >= 15 ) {
-                    throw gameOver();
-                }
-            }
             bool moveNext = false;
             for(Cell *c: blocks) {
+                if(c->getInfo().row < 0) continue;
                 if(isCurrentRowFull(c->getInfo().row)) {
                     eraseRow(c->getInfo().row);
+                    // erase the block at the row
+                    isRowErased = true;
+                    placedBlocks.emplace_back(currentBlock);
+                    vector<int> emptyArray;
+                    timesErased++;
+                    for(int i =0; i < placedBlocks.size(); i++) {
+                        for(Cell *c1: placedBlocks.at(i)->getCells()) {
+                            if( c1->getInfo().row == c->getInfo().row) {
+                                c1->setPiece(' ');
+                            }
+                        }
+                    }
+
+                    for(int i =0; i < placedBlocks.size(); i++) {
+                        Block *b = placedBlocks.at(i);
+                        if(b->isBlockEmpty()) {
+                            score = score + (b->getLevel()+1) * (b->getLevel()+1);
+                            emptyArray.emplace_back(i);
+                        }
+                    }
+                    for(int i = 0; i < emptyArray.size(); i++) {
+                        placedBlocks.erase(placedBlocks.begin()+ emptyArray.at(i) - i);
+                    }
+
+                    score = score + (levelNumber + 1)*(levelNumber+1);
                     moveNext = true;
                 }
             }
@@ -196,6 +237,20 @@ bool Grid::moveCurrentBlockDown(int times) {
                 }
             }
             if(moveNext) {
+                highScore = max(highScore, score);
+                if(!isRowErased) {
+                    placedBlocks.emplace_back(currentBlock);
+                }
+                else {
+                    // remaing placed block each cell comes one row down.
+                    for(int i =0; i < placedBlocks.size(); i++) {
+                        for(Cell *c: placedBlocks.at(i)->getCells()) {
+                            Info f = c->getInfo();
+                            f.row-=timesErased;
+                            c->setInfo(f);
+                        }
+                    }
+                }
                 moveToNextBlock();
                 break;
             }
@@ -256,7 +311,6 @@ bool Grid::copyBlockIntoGrid(Block *block) {
         int col = c->getInfo().col;
         theGrid.at(row).at(col).setPiece(c->getInfo().blockType);
     }
-
     return true;
 }
 

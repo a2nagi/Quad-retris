@@ -3,10 +3,9 @@
 #include "Block.h"
 class JBlock : public Block {
 public:
-    JBlock();
+    JBlock(int level);
     Color getColor()override;
     void setRotationHeight(int height)override;
-    void setRotationWidth(int width)override;
     std::string toString() override;
 };
 #endif //JBLOCK_H

@@ -22,29 +22,29 @@ Block* Level1::getNextBlock(){
 	switch(x) {
         case 0:
         case 1:
-            b = new IBlock();
+            b = new IBlock(getLevel());
             break;
         case 2:
         case 3:
-            b = new LBlock();
+            b = new LBlock(getLevel());
             break;
         case 4:
         case 5:
-            b = new OBlock();
+            b = new OBlock(getLevel());
             break;
         case 6:
         case 7:
-            b = new TBlock();
+            b = new TBlock(getLevel());
             break;
         case 8:
         case 9:
-            b = new JBlock();
+            b = new JBlock(getLevel());
             break;
         case 10:
-            b = new SBlock();
+            b = new SBlock(getLevel());
             break;
         case 11:
-            b = new ZBlock();
+            b = new ZBlock(getLevel());
             break;
     }
 
