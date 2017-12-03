@@ -16,9 +16,9 @@ void GraphicsDisplay::notify(Subject &whoNotified) {
   Info I = whoNotified.getInfo();
   int cellColSize = 500 / 11;
   int cellRowSize = 500 / 18;
-  xw.drawString(100, 40, "Level: " + g->getLevel(), Xwindow::Blue);
-  xw.drawString(100, 60, "Score: " + g->getScore(), Xwindow::Blue);
-  xw.drawString(100, 80, "Hi Score " + g->getHighScore(), Xwindow::Blue);
+  xw.drawString(100, 40, "Level: " + to_string(g->getLevel()), Xwindow::Blue);
+  xw.drawString(100, 60, "Score: " + to_string(g->getScore()), Xwindow::Blue);
+  xw.drawString(100, 80, "Hi Score " + to_string(g->getHighScore()), Xwindow::Blue);
   int rows = 17;
   switch(I.blockType) {
    case 'I':
