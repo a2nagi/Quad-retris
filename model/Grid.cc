@@ -370,14 +370,14 @@ void Grid::moveCurrentBlockLeftRight(Direction d, int times) {
                 break;
             }
         }
-        if(this->levelNumber >= 3) {
-            moveCurrentBlockDown(1);
-        }
         emptyCellsInGrid(cellCopy);
         copyBlockIntoGrid(currentBlock);
         if(done) {
           break;
         }
+    }
+    if(this->levelNumber >= 3) {
+        moveCurrentBlockDown(1);
     }
 }
 
