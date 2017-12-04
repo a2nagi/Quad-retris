@@ -61,12 +61,16 @@ Block* Level::getBlockByChar(char block) {
             break;
         case 'O':
             b = new OBlock(getLevel());
+            break;
         case 'S':
             b = new SBlock(getLevel());
+            break;
         case 'Z':
             b = new ZBlock(getLevel());
+            break;
         case 'T':
             b = new TBlock(getLevel());
+            break;
     }
     return b;
 }
