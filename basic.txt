@@ -1,0 +1,5 @@
+50down
+drop
+10right
+4left
+5down
