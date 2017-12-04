@@ -87,9 +87,9 @@ void Grid::initGrid(string fileName, int initialLevel, bool isTextOnly) {
     levelNumber = initialLevel;
     score = 0;
     currentBlock = currentLevel->getNextBlock();
+    nextBlock = currentLevel->getNextBlock();
     changeBlockToGridCoordinates();
     copyBlockIntoGrid(currentBlock);
-    nextBlock = currentLevel->getNextBlock();
 }
 
 void Grid::moveToNextBlock() {
