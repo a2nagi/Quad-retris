@@ -395,6 +395,15 @@ void Grid::rotateBlock(int multiple) {
     for(int i = 0 ; i < multiple; i++) {
         currentBlock->rotate();
     }
+    if(currentBlock->getHeight() == 3 && multiple == 3) {
+        // invert the I block
+       int minRow = currentBlock->getMinRows().at(0)->getInfo().row;
+        for(Cell *c: currentBlock->getCells()) {
+            Info i = c->getInfo();
+            i.row = i.row - 2*(i.row - minRow);
+            c->setInfo(i);
+        }
+    }
     for(Cell *c : currentBlock->getCells()){
         unsigned int row = c->getInfo().row;
         unsigned int col = c->getInfo().col;
