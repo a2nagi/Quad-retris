@@ -3,6 +3,8 @@
 #include "../model/Info.h"
 #include "../model/Subject.h"
 #include "../model/Grid.h"
+#include "../controller/Block.h"
+#include "../model/Cell.h"
 
 using namespace std;
 
@@ -11,9 +13,7 @@ GraphicsDisplay::GraphicsDisplay(int gridSize, int winSize, Grid *g): g{g}, xw{g
   xw.drawString(200, 20, "Project Quadris", Xwindow::Blue);
   xw.fillRectangle(0,100,500,500,Xwindow::Cyan);
 }
-void GraphicsDisplay::paintBlock(Subject &whoNotified) {
-  int rows = 17;
-  Info I = whoNotified.getInfo();
+void GraphicsDisplay::paintBlock(Info I, int rows) {
   int cellColSize = 500 / 11;
   int cellRowSize = 500 / 18;
   switch(I.blockType) {
@@ -44,9 +44,18 @@ void GraphicsDisplay::paintBlock(Subject &whoNotified) {
 }
 
 void GraphicsDisplay::notify(Subject &whoNotified) {
-  xw.fillRectangle(80,30,500,70, Xwindow::White);
-  xw.drawString(100, 40, "Level: " + to_string(g->getLevel()), Xwindow::Blue);
-  xw.drawString(100, 60, "Score: " + to_string(g->getScore()), Xwindow::Blue);
-  xw.drawString(100, 80, "Hi Score " + to_string(g->getHighScore()), Xwindow::Blue);
-  paintBlock(whoNotified);
+    xw.fillRectangle(80,30,500,70, Xwindow::White);
+    xw.drawString(100, 40, "Level: " + to_string(g->getLevel()), Xwindow::Blue);
+    xw.drawString(100, 60, "Score: " + to_string(g->getScore()), Xwindow::Blue);
+    xw.drawString(100, 80, "Hi Score " + to_string(g->getHighScore()), Xwindow::Blue);
+    Info I = whoNotified.getInfo();
+    paintBlock(I, 17);
+    xw.drawString(100, 630, "Next Block:", Xwindow::Blue);
+    Block *nextBlock = g->getNextBlock();
+    if(nextBlock != nullptr) {
+        for(Cell *c: g->getNextBlock()->getCells()) {
+            Info i = c->getInfo();
+            paintBlock(i, 24);
+        }
+    }
 }

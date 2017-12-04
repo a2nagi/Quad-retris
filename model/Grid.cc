@@ -205,7 +205,7 @@ bool Grid::moveCurrentBlockDown(int times) {
                     vector<int> emptyArray;
                     timesErased++;
                     heavyCounter = 0;
-                    for(int i =0; i < placedBlocks.size(); i++) {
+                    for(unsigned int i =0; i < placedBlocks.size(); i++) {
                         for(Cell *c1: placedBlocks.at(i)->getCells()) {
                             if( c1->getInfo().row == c->getInfo().row) {
                                 c1->setPiece(' ');
@@ -213,14 +213,14 @@ bool Grid::moveCurrentBlockDown(int times) {
                         }
                     }
 
-                    for(int i =0; i < placedBlocks.size(); i++) {
+                    for(unsigned int i =0; i < placedBlocks.size(); i++) {
                         Block *b = placedBlocks.at(i);
                         if(b->isBlockEmpty()) {
                             score = score + (b->getLevel()+1) * (b->getLevel()+1);
                             emptyArray.emplace_back(i);
                         }
                     }
-                    for(int i = 0; i < emptyArray.size(); i++) {
+                    for(unsigned int i = 0; i < emptyArray.size(); i++) {
                         placedBlocks.erase(placedBlocks.begin()+ emptyArray.at(i) - i);
                     }
 
@@ -252,7 +252,7 @@ bool Grid::moveCurrentBlockDown(int times) {
                 }
                 else {
                     // remaing placed block each cell comes one row down.
-                    for(int i =0; i < placedBlocks.size(); i++) {
+                    for(unsigned int i =0; i < placedBlocks.size(); i++) {
                         for(Cell *c: placedBlocks.at(i)->getCells()) {
                             Info f = c->getInfo();
                             f.row-=timesErased;
@@ -328,7 +328,6 @@ bool Grid::copyBlockIntoGrid(Block *block) {
     for(Cell *c: blocks) {
         int row = c->getInfo().row;
         int col = c->getInfo().col;
-        char v1 = theGrid.at(row).at(col).getInfo().blockType;
         if(theGrid.at(row).at(col).getInfo().blockType != ' ' ) {
             // cannot move block
             return false;

@@ -184,12 +184,12 @@ int Block::getMinCols() {
     CellInfos.emplace_back(c4->getInfo());
 
     vector<int> calcWidth;
-    for (int i = 0; i < CellInfos.size(); i++) {
+    for (unsigned int i = 0; i < CellInfos.size(); i++) {
         calcWidth.emplace_back(CellInfos.at(i).col);
     }
 
     int minWidth=calcWidth.at(0);
-    for (int j = 0; j < calcWidth.size(); j++)
+    for (unsigned int j = 0; j < calcWidth.size(); j++)
     {
 
         if (calcWidth.at(j) < minWidth)
