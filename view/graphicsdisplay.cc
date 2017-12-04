@@ -11,7 +11,7 @@ using namespace std;
 GraphicsDisplay::GraphicsDisplay(int gridSize, int winSize, Grid *g): g{g}, xw{gridSize, winSize}  {
 
   xw.drawString(200, 20, "Project Quadris", Xwindow::Blue);
-  xw.fillRectangle(0,100,500,500,Xwindow::Cyan);
+  xw.fillRectangle(0,100,500,500,Xwindow::Black);
   b = nullptr;
 }
 void GraphicsDisplay::paintBlock(Info I, int rows) {
@@ -22,7 +22,7 @@ void GraphicsDisplay::paintBlock(Info I, int rows) {
       xw.fillRectangle(I.col*cellColSize,150+(rows - I.row)*cellRowSize,cellColSize,cellRowSize, Xwindow::Green);
       break;
    case 'J':
-      xw.fillRectangle(I.col*cellColSize,150+(rows - I.row)*cellRowSize,cellColSize,cellRowSize, Xwindow::Black);
+      xw.fillRectangle(I.col*cellColSize,150+(rows - I.row)*cellRowSize,cellColSize,cellRowSize, Xwindow::Cyan);
       break;
    case 'L':
       xw.fillRectangle(I.col*cellColSize,150+(rows-I.row)*cellRowSize,cellColSize,cellRowSize, Xwindow::Blue);
