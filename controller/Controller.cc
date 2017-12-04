@@ -43,13 +43,25 @@ void Controller::parseCommand(istream *inputStream){
         }
 
         if(regex_search(s,*left)){
-            g->moveCurrentBlockLeftRight(Direction::left, multiple);
-            cout<<*td;
+            try {
+                g->moveCurrentBlockLeftRight(Direction::left, multiple);
+                cout<<*td;
+            }catch (gameOver) {
+                cout << "Game Over!! Press any key to quit" << endl;
+                getline(cin, s);
+                exit(0);
+            }
         }
 
         else if(regex_search(s,*right)){
-            g->moveCurrentBlockLeftRight(Direction::right, multiple);
-            cout<<*td;
+            try {
+                g->moveCurrentBlockLeftRight(Direction::right, multiple);
+                cout<<*td;
+            }catch (gameOver) {
+                cout << "Game Over!! Press any key to quit" << endl;
+                getline(cin, s);
+                exit(0);
+            }
         }
 
         else if(regex_search(s,*down)){
