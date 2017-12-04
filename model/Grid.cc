@@ -71,7 +71,7 @@ void Grid::initGrid(string fileName, int initialLevel, bool isTextOnly) {
     allLevels.emplace_back(new Level4());
     allLevels.at(0)->readFile(fileName);
     td = new TextDisplay(this);
-    gd = new GraphicsDisplay(500, 800, this);
+    gd = new GraphicsDisplay(510, 700, this);
     for( int i = 0; i < rows; i++ ) {
         theGrid.emplace_back(vector<Cell>());
         for( int j = 0 ; j < cols ; j++ ) {
