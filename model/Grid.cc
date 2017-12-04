@@ -350,6 +350,7 @@ void Grid::addObserverToCopy(std::vector<Cell *> cells) {
 }
 
 void Grid::moveCurrentBlockLeftRight(Direction d, int times) {
+    bool done = false;
     for(int i = 0 ; i < times; i++) {
         vector<Cell*> blocks = currentBlock->getCells();
         vector<Cell *> cellCopy = currentBlock->copyCells();
@@ -365,14 +366,18 @@ void Grid::moveCurrentBlockLeftRight(Direction d, int times) {
                 else {
                     currentBlock->move(Direction::right);
                 }
+                done = true;
                 break;
             }
         }
+        if(this->levelNumber >= 3) {
+            moveCurrentBlockDown(1);
+        }
         emptyCellsInGrid(cellCopy);
         copyBlockIntoGrid(currentBlock);
-    }
-    if(this->levelNumber >= 3) {
-        moveCurrentBlockDown(1);
+        if(done) {
+          break;
+        }
     }
 }
 
