@@ -16,7 +16,7 @@ GraphicsDisplay::GraphicsDisplay(int gridSize, int winSize, Grid *g): g{g}, xw{g
 }
 void GraphicsDisplay::paintBlock(Info I, int rows) {
   int cellColSize = 500 / 11;
-  int cellRowSize = 500 / 18;
+  int cellRowSize = 450 / 18;
   switch(I.blockType) {
    case 'I':
       xw.fillRectangle(I.col*cellColSize,150+(rows - I.row)*cellRowSize,cellColSize,cellRowSize, Xwindow::Green);
@@ -51,15 +51,15 @@ void GraphicsDisplay::notify(Subject &whoNotified) {
     xw.drawString(100, 80, "Hi Score " + to_string(g->getHighScore()), Xwindow::Blue);
     Info I = whoNotified.getInfo();
     paintBlock(I, 17);
-    xw.fillRectangle(80, 600, 500, 100, Xwindow::White);
     xw.drawString(100, 630, "Next Block:", Xwindow::Blue);
     Block *nextBlock = g->getNextBlock();
     if(nextBlock == nullptr || (nextBlock == b && b != nullptr)) return;
     b = nextBlock;
+    xw.fillRectangle(110, 600, 500, 100, Xwindow::White);
     for(Cell *c: g->getNextBlock()->getCells()) {
       if(c == nullptr) continue;
         Info i = c->getInfo();
         i.col += 4;
-        paintBlock(i, 18);
+        paintBlock(i, 20);
     }
 }

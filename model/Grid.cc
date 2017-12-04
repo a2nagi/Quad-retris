@@ -97,8 +97,8 @@ void Grid::moveToNextBlock() {
     if(currentBlock == nullptr) {
         throw gameOver();
     }
-    changeBlockToGridCoordinates();
     nextBlock = currentLevel->getNextBlock();
+    changeBlockToGridCoordinates();
 }
 
 void Grid::changeBlockToGridCoordinates() {
