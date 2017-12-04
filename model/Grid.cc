@@ -30,6 +30,8 @@ Grid::Grid() {
     highScore = 0;
     score = 0;
     heavyCounter = 0;
+    currentBlock = nullptr;
+    nextBlock = nullptr;
 }
 
 int Grid::getRows() {
