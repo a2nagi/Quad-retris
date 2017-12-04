@@ -31,7 +31,7 @@ void GraphicsDisplay::paintBlock(Info I, int rows) {
       xw.fillRectangle(I.col*cellColSize,150+(rows-I.row)*cellRowSize,cellColSize,cellRowSize, Xwindow::Yellow);
       break;
    case 'S':
-      xw.fillRectangle(I.col*cellColSize,150+(rows-I.row)*cellRowSize,cellColSize,cellRowSize, Xwindow::Yellow);
+      xw.fillRectangle(I.col*cellColSize,150+(rows-I.row)*cellRowSize,cellColSize,cellRowSize, Xwindow::Red);
       break;
    case 'Z':
       xw.fillRectangle(I.col*cellColSize,150+(rows - I.row)*cellRowSize,cellColSize,cellRowSize, Xwindow::Magenta);

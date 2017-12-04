@@ -390,22 +390,21 @@ void Grid::replaceCurrentBlock(char block) {
 }
 
 void Grid::rotateBlock(int multiple) {
+    vector<Cell*> cellCopy = currentBlock->copyCells();
+    addObserverToCopy(cellCopy);
     for(int i = 0 ; i < multiple; i++) {
-        vector<Cell*> blocks = currentBlock->getCells();
-        vector<Cell*> cellCopy = currentBlock->copyCells();
-        addObserverToCopy(cellCopy);
         currentBlock->rotate();
-        for(Cell *c : blocks){
-            unsigned int row = c->getInfo().row;
-            unsigned int col = c->getInfo().col;
-            if(col >= theGrid.at(0).size() || row >= theGrid.size()) {
-               currentBlock->setCells(cellCopy);
-                return;
-            }
-        }
-        emptyCellsInGrid(cellCopy);
-        copyBlockIntoGrid(currentBlock);
     }
+    for(Cell *c : currentBlock->getCells()){
+        unsigned int row = c->getInfo().row;
+        unsigned int col = c->getInfo().col;
+        if(col >= theGrid.at(0).size() || row >= theGrid.size()) {
+            currentBlock->setCells(cellCopy);
+            return;
+        }
+    }
+    emptyCellsInGrid(cellCopy);
+    copyBlockIntoGrid(currentBlock);
     if(this->levelNumber >= 3) {
         moveCurrentBlockDown(1);
     }
