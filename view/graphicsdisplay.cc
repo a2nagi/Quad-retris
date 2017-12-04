@@ -54,6 +54,7 @@ void GraphicsDisplay::notify(Subject &whoNotified) {
     Block *nextBlock = g->getNextBlock();
     if(nextBlock != nullptr) {
         for(Cell *c: g->getNextBlock()->getCells()) {
+            if(c == nullptr) continue;
             Info i = c->getInfo();
             paintBlock(i, 24);
         }
