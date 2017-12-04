@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
             if(i == argc) {
                 exit(1);
             }
-            fileName = argv[i];
+            startLevel = stoi(argv[i]);
         }
         i++;
     }
