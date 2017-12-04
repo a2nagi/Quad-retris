@@ -44,7 +44,7 @@ void GraphicsDisplay::paintBlock(Info I, int rows) {
        break;
 
      default:
-      xw.fillRectangle(I.col*cellColSize,150+(rows - I.row) *cellRowSize,cellColSize,cellRowSize, Xwindow::Cyan);
+      xw.fillRectangle(I.col*cellColSize,150+(rows - I.row) *cellRowSize,cellColSize,cellRowSize, Xwindow::Black);
   }
 }
 
