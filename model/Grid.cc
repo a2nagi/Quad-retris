@@ -395,12 +395,24 @@ void Grid::rotateBlock(int multiple) {
     for(int i = 0 ; i < multiple; i++) {
         currentBlock->rotate();
     }
-    if(currentBlock->getHeight() == 3 && multiple == 3) {
+    if( multiple == 3 ) {
         // invert the I block
-       int minRow = currentBlock->getMinRows().at(0)->getInfo().row;
+        int minRow = currentBlock->getMinRows().at(0)->getInfo().row;
+        int maxRow = currentBlock->getMaxRows().at(0)->getInfo().row;
+        if(minRow == maxRow) {
+            currentBlock->rotate();
+            maxRow = currentBlock->getMaxRows().at(0)->getInfo().row;
+            currentBlock->rotate();
+        }
+        int height = currentBlock->getHeight();
         for(Cell *c: currentBlock->getCells()) {
             Info i = c->getInfo();
-            i.row = i.row - 2*(i.row - minRow);
+            if(height == 3){
+                i.row = i.row - 2*(i.row - minRow);
+            }
+            else {
+                i.row = i.row + (maxRow - i.row);
+            }
             c->setInfo(i);
         }
     }

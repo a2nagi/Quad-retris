@@ -157,6 +157,22 @@ void Block::rotate()
         c4->setInfo(CellInfos.at(3));
 }
 
+vector<Cell *> Block::getMaxRows() {
+    vector<Cell *> allCells = this->getCells();
+    Cell *minCell = allCells.at(0);
+    vector<Cell *> minCells;
+    for(unsigned int i =1; i < allCells.size(); i++){
+        if(minCell->getInfo().row < allCells.at(i)->getInfo().row) {
+            minCell = allCells.at(i);
+        }
+    }
+    for(Cell *c: this->getCells()) {
+        if(c->getInfo().row == minCell->getInfo().row) {
+            minCells.emplace_back(c);
+        }
+    }
+    return minCells;
+}
 
 vector<Cell *> Block::getMinRows() {
     vector<Cell *> allCells = this->getCells();

@@ -28,6 +28,7 @@ public:
     virtual std::string toString()=0;
     int getHeight();
     std::vector<Cell *> getMinRows();
+    std::vector<Cell *> getMaxRows();
     int getMinCols();
     bool isBlockEmpty();
     int getLevel();
