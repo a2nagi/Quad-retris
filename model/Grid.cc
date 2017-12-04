@@ -57,6 +57,7 @@ void Grid::clearGrid() {
             theGrid.at(i).at(j).setInfo(f);
         }
     }
+    copyBlockIntoGrid(currentBlock);
 }
 
 void Grid::makeCurrentLevelFromFile(std::string fileName) {
@@ -394,27 +395,6 @@ void Grid::rotateBlock(int multiple) {
     addObserverToCopy(cellCopy);
     for(int i = 0 ; i < multiple; i++) {
         currentBlock->rotate();
-    }
-    if( multiple == 3 ) {
-        // invert the I block
-        int minRow = currentBlock->getMinRows().at(0)->getInfo().row;
-        int maxRow = currentBlock->getMaxRows().at(0)->getInfo().row;
-        if(minRow == maxRow) {
-            currentBlock->rotate();
-            maxRow = currentBlock->getMaxRows().at(0)->getInfo().row;
-            currentBlock->rotate();
-        }
-        int height = currentBlock->getHeight();
-        for(Cell *c: currentBlock->getCells()) {
-            Info i = c->getInfo();
-            if(height == 3){
-                i.row = i.row - 2*(i.row - minRow);
-            }
-            else {
-                i.row = i.row + (maxRow - i.row);
-            }
-            c->setInfo(i);
-        }
     }
     for(Cell *c : currentBlock->getCells()){
         unsigned int row = c->getInfo().row;
