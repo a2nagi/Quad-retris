@@ -111,14 +111,28 @@ void Controller::parseCommand(istream *inputStream){
 
         else if(regex_search(s,*clockwise)){
             multiple = multiple%4;
-            g->rotateBlock( multiple );
-            cout<<*td;
+            try {
+                g->rotateBlock( multiple );
+                cout<<*td;
+            }catch (gameOver) {
+                cout << "Game Over!! Press any key to quit" << endl;
+                getline(cin, s);
+                exit(0);
+
+            }
         }
 
         else if(regex_search(s,*counterclockwise)){
-            multiple = 4 - (multiple%4);
-            g->rotateBlock(multiple);
-            cout<<*td;
+            try{
+                multiple = 4 - (multiple%4);
+                g->rotateBlock(multiple);
+                cout<<*td;
+            }catch (gameOver) {
+                cout << "Game Over!! Press any key to quit" << endl;
+                getline(cin, s);
+                exit(0);
+
+            }
         }
 
         else if(regex_search(s,*drop)){
