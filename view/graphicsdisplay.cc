@@ -28,7 +28,7 @@ void GraphicsDisplay::paintBlock(Info I, int rows) {
       xw.fillRectangle(I.col*cellColSize,150+(rows-I.row)*cellRowSize,cellColSize,cellRowSize, Xwindow::Blue);
       break;
    case 'O':
-      xw.fillRectangle(I.col*cellColSize,150+(rows-I.row)*cellRowSize,cellColSize,cellRowSize, Xwindow::Brown);
+      xw.fillRectangle(I.col*cellColSize,150+(rows-I.row)*cellRowSize,cellColSize,cellRowSize, Xwindow::Yellow);
       break;
    case 'S':
       xw.fillRectangle(I.col*cellColSize,150+(rows-I.row)*cellRowSize,cellColSize,cellRowSize, Xwindow::Yellow);
@@ -39,6 +39,10 @@ void GraphicsDisplay::paintBlock(Info I, int rows) {
    case 'T':
       xw.fillRectangle(I.col*cellColSize,150+(rows - I.row)*cellRowSize,cellColSize,cellRowSize, Xwindow::Orange);
        break;
+   case '*':
+       xw.fillRectangle(I.col*cellColSize,150+(rows - I.row)*cellRowSize,cellColSize,cellRowSize, Xwindow::Brown);
+       break;
+
      default:
       xw.fillRectangle(I.col*cellColSize,150+(rows - I.row) *cellRowSize,cellColSize,cellRowSize, Xwindow::Cyan);
   }
